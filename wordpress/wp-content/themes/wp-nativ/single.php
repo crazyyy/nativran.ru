@@ -25,7 +25,7 @@
       <?php edit_post_link(); ?>
 
       <?php comments_template(); ?>
-<?php the_field('price'); ?>
+      <?php the_field('price'); ?>
     </article>
   <?php endwhile; endif; ?>
 

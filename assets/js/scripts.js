@@ -1832,7 +1832,6 @@ $(function() {
         options.showCheckoutModal ? showModal() : options.clickOnCartIcon($cartIcon, ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity(), ProductManager.getTotalCurrency());
       });
 
-
       $(document).on('click', '.prod_quante .quantity-up', function() {
 
         var input = $(this).parent('.quantity-nav').siblings('input'),
@@ -1841,7 +1840,6 @@ $(function() {
           oldValue = parseFloat(input.val()),
           price = $(this).closest(".row").data("price"),
           id = $(this).closest(".row").data("id");
-
 
         if (oldValue >= max) {
           var newVal = oldValue;
@@ -1852,14 +1850,16 @@ $(function() {
         input.trigger("change");
         var quantity = newVal;
 
-        $(this).parents(".prod_quante").siblings("." + classProductTotal).children('.total-price').text(MathHelper.getRoundedNumber(price * quantity).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
+        var totalProductPrice = MathHelper.getRoundedNumber(price * quantity).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+
+        $(this).parents(".prod_quante").siblings("." + classProductTotal).children('.total-price').text(totalProductPrice);
+
         ProductManager.updatePoduct(id, quantity);
 
         $cartBadge.text(ProductManager.getTotalQuantity());
         showGrandTotal();
 
       });
-
 
       $(document).on('click', '.prod_quante .quantity-down', function() {
 
@@ -1870,28 +1870,26 @@ $(function() {
           price = $(this).closest(".row").data("price"),
           id = $(this).closest(".row").data("id");
 
-
         if (oldValue <= min) {
           var newVal = oldValue;
         } else {
           var newVal = oldValue - 1;
         }
+
         input.val(newVal);
         input.trigger("change");
         var quantity = newVal;
 
+        var totalProductPrice = MathHelper.getRoundedNumber(price * quantity).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 
-        $(this).parent("div").siblings("." + classProductTotal).children('.total-price').text(MathHelper.getRoundedNumber(price * quantity).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
+        $(this).parents(".prod_quante").siblings("." + classProductTotal).children('.total-price').text(totalProductPrice);
+
         ProductManager.updatePoduct(id, quantity);
 
         $cartBadge.text(ProductManager.getTotalQuantity());
         showGrandTotal();
 
       });
-
-
-
-
 
       $(document).on("input", "." + classProductQuantity, function() {
         var price = $(this).closest(".row").data("price");
@@ -1972,7 +1970,12 @@ $(function() {
         ProductManager.setProduct(id, name, summary, price, quantity, image, currency);
         $cartBadge.text(ProductManager.getTotalQuantity());
 
-        options.afterAddOnCart(ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity(), ProductManager.getTotalCurrency());
+        options.afterAddOnCart(
+          ProductManager.getAllProducts(),
+          ProductManager.getTotalPrice(),
+          ProductManager.getTotalQuantity(),
+          ProductManager.getTotalCurrency()
+        );
       });
 
     }

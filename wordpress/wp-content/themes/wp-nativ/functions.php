@@ -683,24 +683,4 @@ function disable_emojicons_tinymce( $plugins ) {
   }
 }
 
-
-/*//ADD ATRIBUT TO JS
-function mihdan_add_async_attribute( $tag, $handle ) {
-
-  $handles = array(
-    'jquery',
-    'jquery-migrate',
-    'modernizr',
-  );
-
-   foreach( $handles as $async_script) {
-      if ( $async_script === $handle ) {
-         return str_replace( ' src', ' async="async"" src', $tag );
-      }
-   }
-
-   return $tag;
-}
-add_filter( 'script_loader_tag', 'mihdan_add_async_attribute', 10, 2 );*/
-
 ?>

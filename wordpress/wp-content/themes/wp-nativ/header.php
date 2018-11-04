@@ -19,34 +19,40 @@
   <![endif]-->
   <!-- css + javascript -->
   <?php wp_head(); ?>
+  <?php $current_lang = pll_current_language(); ?>
 </head>
 <body <?php body_class(); ?>>
 <!-- wrapper -->
 <div class="wrapper">
 
   <header>
-    <div class="present-line">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+    <?php if( have_rows('header_sales') ) { ?>
+      <div class="present-line">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
 
-              <?php if( have_rows('header_sales') ): ?>
-                <?php while ( have_rows('header_sales') ) : the_row(); ?>
-                  <?php $image = get_sub_field('icon');
-                   ?>
-
+              <?php while ( have_rows('header_sales') ) : the_row(); ?>
+                <?php $image = get_sub_field('icon'); ?>
+                <?php echo '<marquee>'; ?>
                   <?php if ( !empty($image)) { ?>
-                    <img src="<?php echo $image['url']; ?>" />
+                    <img src="<?php echo $image['url']; ?>" style="height: 26px; margin-right: 10px;" />
                   <?php } ?>
                   <?php the_sub_field('text'); ?>
-                <?php  endwhile; ?>
-              <?php endif; ?>
+                <?php echo '</marquee>'; ?>
+              <?php  endwhile; ?>
 
+            </div>
           </div>
-        </div>
-      </div><!-- /.container -->
-    </div><!-- /.present-line -->
-    <div class="header-line">
+        </div><!-- /.container -->
+      </div><!-- /.present-line -->
+    <?php $header_line_style = ''; } else { $header_line_style = 'padding-top: 41px;'; } ?>
+    <style>
+      header .header-line.stick {
+        padding-top: 0;
+      }
+    </style>
+    <div class="header-line" style="<?php echo $header_line_style; ?>">
       <div class="container">
 
           <div class="logo">
@@ -55,7 +61,7 @@
               </a>
           </div><!-- /logo -->
           <div class="slogan">
-            <p><b class="blue-txt hidden-sm">НАТИВ</b> - 100% натуральный продукт</p>
+            <p><?php if (get_field('header_slogan')) { the_field('header_slogan'); } else { echo '<b class="blue-txt hidden-sm">НАТИВ</b> - 100% натуральный продукт'; }?></p>
           </div>
           <div class="lang-nav"><?php wpeHeadNav(); ?></div>
           <div class="head-contacts">
@@ -77,22 +83,6 @@
 
       </div><!-- /.container -->
     </div>
-
-
-      <nav class="nav" role="navigation">
-
-      </nav><!-- /nav -->
-
-
+    <nav class="nav" role="navigation">
+    </nav><!-- /nav -->
   </header><!-- /header -->
-
-
-
-
-
-
-
-
-
-
-

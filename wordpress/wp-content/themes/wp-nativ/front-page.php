@@ -14,10 +14,18 @@
       <?php $timer = get_sub_field('timer'); ?>
 
 
-      <?php $dataTimer =  ((int)$timer[0]["time_value"] * 86400 + (int)$timer[1]["time_value"] * 3600 + (int)$timer[2]["time_value"] * 60 + (int)$timer[3]["time_value"]);?>
+      <?php
+        $t_days = (int)$timer[0]["time_value"];
+        $t_hours = (int)$timer[1]["time_value"];
+        $t_mins = (int)$timer[2]["time_value"];
+        $t_seconds = (int)$timer[3]["time_value"];
+        // $slider_item_name = 'ms_slider_'.$i;
+        $slider_item_name = 'wordpress_test_cookie';
+
+        $dataTimer = ($t_days * 86400 + $t_hours * 3600 + $t_mins * 60 + $t_seconds);
+      ?>
 
       <?php $slide_product = get_sub_field('product')[0]; ?>
-
 
       <div class="slide item"  style="background-image: url(<?php if ( !empty($bg_image)) { echo $bg_image['url'];} ?>);">
 
@@ -41,7 +49,7 @@
                     <?php } ?>
                     <?php if ( get_sub_field('timer_switch') ) { ?>
                       <div class="timer_wrapp col-lg-10 col-lg-offset-1">
-                        <div id="clockdiv-<?php  echo $i;?>" class="slide-timer" data-timer="<?php echo $dataTimer;?>">
+                        <div id="clockdiv-<?php echo $i;?>" class="slide-timer" data-timer="<?php echo $dataTimer;?>">
                           <div class="sale"><?php the_sub_field('sale_text'); ?></div>
                           <div class="timer-item">
                             <span class="days"></span>
@@ -73,28 +81,48 @@
                   </div>
                 <?php } ?>
 
-                <?php if ( get_field('price', $slide_product) ) { ?>
+                <?php $current_lang = pll_current_language(); if ( get_field('price', $slide_product) ) { ?>
                   <div class="price_wrapp col-md-10 col-md-offset-1">
-
+                    <?php if(get_field('old_price', $slide_product)) { ?>
                     <div class="slide-oldprice">
                       <?php echo number_format(get_field('old_price', $slide_product),0,'',' '); ?>
                       <span class="currency"><?php the_field('currency', $slide_product); ?></span>
                     </div>
-                    <div class="slide-price">
-                      <?php echo number_format(get_field('price', $slide_product),0,'',' '); ?>
-                      <span class="currency"><?php the_field('currency', $slide_product); ?></span>
-                    </div>
+                    <?php } ?>
+                    <?php if(get_field('price', $slide_product)) { ?>
+                      <div class="slide-price">
+                        <?php echo number_format(get_field('price', $slide_product),0,'',' '); ?>
+                        <span class="currency"><?php the_field('currency', $slide_product); ?></span>
+                      </div>
+                    <?php } ?>
 
-                    <button class="slide-btn green-big-btn my-cart-btn" data-id="<?php echo $slide_product; ?>" data-name="<?php echo get_the_title( $slide_product ); ?>" data-summary="summary 2" data-price="<?php the_field('price', $slide_product);?>" data-quantity="2" data-currency="<?php the_field('currency', $slide_product); ?>" data-image="<?php echo $image['sizes']['small']; ?>"><?php the_field('buy_btn', $lending__id);?></button>
+                    <?php
+                      if ($current_lang == 'ru') {$quantity = get_field('min_quantity_ru', $slide_product); if(!$quantity) {$quantity = 2;}}
+                      else if ($current_lang == 'en') {$quantity = get_field('min_quantity_en', $slide_product); if(!$quantity) {$quantity = 4;}}
+                      else if ($current_lang == 'ge') {$quantity = get_field('min_quantity_ge', $slide_product); if(!$quantity) {$quantity = 4;}}
+                      else if ($current_lang == 'fr') {$quantity = get_field('min_quantity_fr', $slide_product); if(!$quantity) {$quantity = 4;}}
+                      else {$quantity = 2;}
+                    ?>
+                    <button class="slide-btn green-big-btn my-cart-btn"
+                      data-id="<?php echo $slide_product; ?>"
+                      data-name="<?php echo get_the_title( $slide_product ); ?>"
+                      data-summary="summary 2"
+                      data-price="<?php the_field('price', $slide_product); ?>"
+                      data-quantity="<?php echo $quantity; ?>"
+                      data-currency="<?php the_field('currency', $slide_product); ?>"
+                      data-image="<?php echo $image['sizes']['small']; ?>">
+                        <?php the_field('buy_btn', $lending__id);?>
+                      </button>
                   <div class="btn-wrapp">
-                  <a href="#modal-product-<?php echo $slide_product; ?>" class="slide-btn btn green-btn" data-toggle="modal">
-                    <?php the_field('more_btn', $lending__id);?>
-                  </a></div>
+                    <a href="#modal-product-<?php echo $slide_product; ?>" class="slide-btn btn green-btn" data-toggle="modal">
+                      <?php the_field('more_btn', $lending__id);?>
+                    </a>
+                  </div>
                   </div>
                 <?php } ?>
 
               </div>
-<div class="clearfix"></div>
+              <div class="clearfix"></div>
               <div class="col-md-10 col-md-offset-1 slide_desc"><?php the_field('short_desk', $slide_product); ?></div>
             <?php } ?>
           </div>
@@ -146,7 +174,25 @@
                   <span class="prod-curr"><?php the_field('currency'); ?></span>
                 </div>
 
-                  <button class="green-bg-btn my-cart-btn" data-id="<?php the_ID(); ?>" data-name="<?php the_title(); ?>" data-summary="summary 2" data-price="<?php the_field('price');?>" data-currency="<?php the_field('currency'); ?>" data-quantity="2" data-image="<?php echo the_post_thumbnail_url('small'); ?>"><?php the_field('buy_btn', $lending__id);?></button>
+                  <?php
+                    $current_lang = pll_current_language();
+                    if ($current_lang === 'ru') {$quantity = get_field('min_quantity_ru'); if(!$quantity) {$quantity = 2;}}
+                    else if ($current_lang === 'en') {$quantity = get_field('min_quantity_en'); if(!$quantity) {$quantity = 4;}}
+                    else if ($current_lang === 'ge') {$quantity = get_field('min_quantity_ge'); if(!$quantity) {$quantity = 4;}}
+                    else if ($current_lang === 'fr') {$quantity = get_field('min_quantity_fr'); if(!$quantity) {$quantity = 4;}}
+                    else {$quantity = 2;}
+                  ?>
+
+                  <button class="green-bg-btn my-cart-btn"
+                    data-id="<?php the_ID(); ?>"
+                    data-name="<?php the_title(); ?>"
+                    data-summary="summary 2"
+                    data-price="<?php the_field('price');?>"
+                    data-currency="<?php the_field('currency'); ?>"
+                    data-quantity="<?php echo $quantity; ?>"
+                    data-image="<?php echo the_post_thumbnail_url('small'); ?>">
+                      <?php the_field('buy_btn', $lending__id);?>
+                  </button>
                   <a href="#modal-product-<?php the_ID(); ?>" class="prod-more-btn btn blue-btn" data-toggle="modal"><?php the_field('more_btn', $lending__id);?></a>
 
               </div><!-- /looper -->
@@ -228,22 +274,18 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 faq-items">
-        <h2><?php the_field('faq_title', $lending__id); ?></h2>
+            <h2><?php the_field('faq_title', $lending__id); ?></h2>
 
-          <?php while ( have_rows('faq_block', $lending__id) ) : the_row(); ?>
-
-            <div class="faq-item fadeIn wow">
-              <div class="question"><p><?php the_sub_field('question'); ?></p></div>
-              <div class="answer"><?php the_sub_field('answer'); ?></div>
-            </div>
-
-          <?php  endwhile; ?>
+            <?php while ( have_rows('faq_block', $lending__id) ) : the_row(); ?>
+              <div class="faq-item fadeIn wow">
+                <div class="question"><p><?php the_sub_field('question'); ?></p></div>
+                <div class="answer"><?php the_sub_field('answer'); ?></div>
+              </div>
+            <?php  endwhile; ?>
 
           </div>
         </div>
-
       </div>
-
     </section>
   <?php endif; ?>
 
@@ -272,8 +314,7 @@
     <section id="cont-form">
       <div class="container">
         <div class="row">
-<?php echo do_shortcode(get_field('contact_code'));?>
-
+          <?php echo do_shortcode(get_field('contact_code'));?>
         </div>
       </div>
     </section>
