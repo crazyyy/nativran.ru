@@ -112,12 +112,12 @@
                       data-currency="<?php the_field('currency', $slide_product); ?>"
                       data-image="<?php echo $image['sizes']['small']; ?>">
                         <?php the_field('buy_btn', $lending__id);?>
-                      </button>
-                  <div class="btn-wrapp">
-                    <a href="#modal-product-<?php echo $slide_product; ?>" class="slide-btn btn green-btn" data-toggle="modal">
-                      <?php the_field('more_btn', $lending__id);?>
-                    </a>
-                  </div>
+                    </button>
+                    <div class="btn-wrapp">
+                      <a href="#modal-product-<?php echo $slide_product; ?>" class="slide-btn btn green-btn" data-toggle="modal">
+                        <?php the_field('more_btn', $lending__id);?>
+                      </a>
+                    </div>
                   </div>
                 <?php } ?>
 

@@ -1,7 +1,7 @@
 // Avoid `console` errors in browsers that lack a console.
-(function() {
+(function () {
   var method;
-  var noop = function() {};
+  var noop = function () {};
   var methods = ['assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error', 'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log', 'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd', 'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'];
   var length = methods.length;
   var console = (window.console = window.console || {});
@@ -28,24 +28,24 @@ if (typeof jQuery === 'undefined') {
  * WOW
  */
 
-(function() {
+(function () {
   var MutationObserver, Util, WeakMap, getComputedStyle, getComputedStyleRX,
-    bind = function(fn, me) {
-      return function() {
+    bind = function (fn, me) {
+      return function () {
         return fn.apply(me, arguments);
       };
     },
-    indexOf = [].indexOf || function(item) {
+    indexOf = [].indexOf || function (item) {
       for (var i = 0, l = this.length; i < l; i++) {
         if (i in this && this[i] === item) return i;
       }
       return -1;
     };
 
-  Util = (function() {
+  Util = (function () {
     function Util() {}
 
-    Util.prototype.extend = function(custom, defaults) {
+    Util.prototype.extend = function (custom, defaults) {
       var key, value;
       for (key in defaults) {
         value = defaults[key];
@@ -56,11 +56,11 @@ if (typeof jQuery === 'undefined') {
       return custom;
     };
 
-    Util.prototype.isMobile = function(agent) {
+    Util.prototype.isMobile = function (agent) {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(agent);
     };
 
-    Util.prototype.createEvent = function(event, bubble, cancel, detail) {
+    Util.prototype.createEvent = function (event, bubble, cancel, detail) {
       var customEvent;
       if (bubble == null) {
         bubble = false;
@@ -83,7 +83,7 @@ if (typeof jQuery === 'undefined') {
       return customEvent;
     };
 
-    Util.prototype.emitEvent = function(elem, event) {
+    Util.prototype.emitEvent = function (elem, event) {
       if (elem.dispatchEvent != null) {
         return elem.dispatchEvent(event);
       } else if (event in (elem != null)) {
@@ -93,7 +93,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    Util.prototype.addEvent = function(elem, event, fn) {
+    Util.prototype.addEvent = function (elem, event, fn) {
       if (elem.addEventListener != null) {
         return elem.addEventListener(event, fn, false);
       } else if (elem.attachEvent != null) {
@@ -103,7 +103,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    Util.prototype.removeEvent = function(elem, event, fn) {
+    Util.prototype.removeEvent = function (elem, event, fn) {
       if (elem.removeEventListener != null) {
         return elem.removeEventListener(event, fn, false);
       } else if (elem.detachEvent != null) {
@@ -113,7 +113,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    Util.prototype.innerHeight = function() {
+    Util.prototype.innerHeight = function () {
       if ('innerHeight' in window) {
         return window.innerHeight;
       } else {
@@ -125,13 +125,13 @@ if (typeof jQuery === 'undefined') {
 
   })();
 
-  WeakMap = this.WeakMap || this.MozWeakMap || (WeakMap = (function() {
+  WeakMap = this.WeakMap || this.MozWeakMap || (WeakMap = (function () {
     function WeakMap() {
       this.keys = [];
       this.values = [];
     }
 
-    WeakMap.prototype.get = function(key) {
+    WeakMap.prototype.get = function (key) {
       var i, item, j, len, ref;
       ref = this.keys;
       for (i = j = 0, len = ref.length; j < len; i = ++j) {
@@ -142,7 +142,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WeakMap.prototype.set = function(key, value) {
+    WeakMap.prototype.set = function (key, value) {
       var i, item, j, len, ref;
       ref = this.keys;
       for (i = j = 0, len = ref.length; j < len; i = ++j) {
@@ -160,7 +160,7 @@ if (typeof jQuery === 'undefined') {
 
   })());
 
-  MutationObserver = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (MutationObserver = (function() {
+  MutationObserver = this.MutationObserver || this.WebkitMutationObserver || this.MozMutationObserver || (MutationObserver = (function () {
     function MutationObserver() {
       if (typeof console !== "undefined" && console !== null) {
         console.warn('MutationObserver is not supported by your browser.');
@@ -172,20 +172,20 @@ if (typeof jQuery === 'undefined') {
 
     MutationObserver.notSupported = true;
 
-    MutationObserver.prototype.observe = function() {};
+    MutationObserver.prototype.observe = function () {};
 
     return MutationObserver;
 
   })());
 
-  getComputedStyle = this.getComputedStyle || function(el, pseudo) {
-    this.getPropertyValue = function(prop) {
+  getComputedStyle = this.getComputedStyle || function (el, pseudo) {
+    this.getPropertyValue = function (prop) {
       var ref;
       if (prop === 'float') {
         prop = 'styleFloat';
       }
       if (getComputedStyleRX.test(prop)) {
-        prop.replace(getComputedStyleRX, function(_, _char) {
+        prop.replace(getComputedStyleRX, function (_, _char) {
           return _char.toUpperCase();
         });
       }
@@ -196,7 +196,7 @@ if (typeof jQuery === 'undefined') {
 
   getComputedStyleRX = /(\-([a-z]){1})/g;
 
-  this.WOW = (function() {
+  this.WOW = (function () {
     WOW.prototype.defaults = {
       boxClass: 'wow',
       animateClass: 'animated',
@@ -224,7 +224,7 @@ if (typeof jQuery === 'undefined') {
       this.wowEvent = this.util().createEvent(this.config.boxClass);
     }
 
-    WOW.prototype.init = function() {
+    WOW.prototype.init = function () {
       var ref;
       this.element = window.document.documentElement;
       if ((ref = document.readyState) === "interactive" || ref === "complete") {
@@ -235,10 +235,10 @@ if (typeof jQuery === 'undefined') {
       return this.finished = [];
     };
 
-    WOW.prototype.start = function() {
+    WOW.prototype.start = function () {
       var box, j, len, ref;
       this.stopped = false;
-      this.boxes = (function() {
+      this.boxes = (function () {
         var j, len, ref, results;
         ref = this.element.querySelectorAll("." + this.config.boxClass);
         results = [];
@@ -248,7 +248,7 @@ if (typeof jQuery === 'undefined') {
         }
         return results;
       }).call(this);
-      this.all = (function() {
+      this.all = (function () {
         var j, len, ref, results;
         ref = this.boxes;
         results = [];
@@ -275,13 +275,13 @@ if (typeof jQuery === 'undefined') {
         this.interval = setInterval(this.scrollCallback, 50);
       }
       if (this.config.live) {
-        return new MutationObserver((function(_this) {
-          return function(records) {
+        return new MutationObserver((function (_this) {
+          return function (records) {
             var k, len1, node, record, results;
             results = [];
             for (k = 0, len1 = records.length; k < len1; k++) {
               record = records[k];
-              results.push((function() {
+              results.push((function () {
                 var l, len2, ref1, results1;
                 ref1 = record.addedNodes || [];
                 results1 = [];
@@ -301,7 +301,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WOW.prototype.stop = function() {
+    WOW.prototype.stop = function () {
       this.stopped = true;
       this.util().removeEvent(this.config.scrollContainer || window, 'scroll', this.scrollHandler);
       this.util().removeEvent(window, 'resize', this.scrollHandler);
@@ -310,13 +310,13 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WOW.prototype.sync = function(element) {
+    WOW.prototype.sync = function (element) {
       if (MutationObserver.notSupported) {
         return this.doSync(this.element);
       }
     };
 
-    WOW.prototype.doSync = function(element) {
+    WOW.prototype.doSync = function (element) {
       var box, j, len, ref, results;
       if (element == null) {
         element = this.element;
@@ -345,7 +345,7 @@ if (typeof jQuery === 'undefined') {
       return results;
     };
 
-    WOW.prototype.show = function(box) {
+    WOW.prototype.show = function (box) {
       this.applyStyle(box);
       box.className = box.className + " " + this.config.animateClass;
       if (this.config.callback != null) {
@@ -359,31 +359,31 @@ if (typeof jQuery === 'undefined') {
       return box;
     };
 
-    WOW.prototype.applyStyle = function(box, hidden) {
+    WOW.prototype.applyStyle = function (box, hidden) {
       var delay, duration, iteration;
       duration = box.getAttribute('data-wow-duration');
       delay = box.getAttribute('data-wow-delay');
       iteration = box.getAttribute('data-wow-iteration');
-      return this.animate((function(_this) {
-        return function() {
+      return this.animate((function (_this) {
+        return function () {
           return _this.customStyle(box, hidden, duration, delay, iteration);
         };
       })(this));
     };
 
-    WOW.prototype.animate = (function() {
+    WOW.prototype.animate = (function () {
       if ('requestAnimationFrame' in window) {
-        return function(callback) {
+        return function (callback) {
           return window.requestAnimationFrame(callback);
         };
       } else {
-        return function(callback) {
+        return function (callback) {
           return callback();
         };
       }
     })();
 
-    WOW.prototype.resetStyle = function() {
+    WOW.prototype.resetStyle = function () {
       var box, j, len, ref, results;
       ref = this.boxes;
       results = [];
@@ -394,7 +394,7 @@ if (typeof jQuery === 'undefined') {
       return results;
     };
 
-    WOW.prototype.resetAnimation = function(event) {
+    WOW.prototype.resetAnimation = function (event) {
       var target;
       if (event.type.toLowerCase().indexOf('animationend') >= 0) {
         target = event.target || event.srcElement;
@@ -402,7 +402,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WOW.prototype.customStyle = function(box, hidden, duration, delay, iteration) {
+    WOW.prototype.customStyle = function (box, hidden, duration, delay, iteration) {
       if (hidden) {
         this.cacheAnimationName(box);
       }
@@ -430,13 +430,13 @@ if (typeof jQuery === 'undefined') {
 
     WOW.prototype.vendors = ["moz", "webkit"];
 
-    WOW.prototype.vendorSet = function(elem, properties) {
+    WOW.prototype.vendorSet = function (elem, properties) {
       var name, results, value, vendor;
       results = [];
       for (name in properties) {
         value = properties[name];
         elem["" + name] = value;
-        results.push((function() {
+        results.push((function () {
           var j, len, ref, results1;
           ref = this.vendors;
           results1 = [];
@@ -450,7 +450,7 @@ if (typeof jQuery === 'undefined') {
       return results;
     };
 
-    WOW.prototype.vendorCSS = function(elem, property) {
+    WOW.prototype.vendorCSS = function (elem, property) {
       var j, len, ref, result, style, vendor;
       style = getComputedStyle(elem);
       result = style.getPropertyCSSValue(property);
@@ -462,7 +462,7 @@ if (typeof jQuery === 'undefined') {
       return result;
     };
 
-    WOW.prototype.animationName = function(box) {
+    WOW.prototype.animationName = function (box) {
       var animationName, error;
       try {
         animationName = this.vendorCSS(box, 'animation-name').cssText;
@@ -476,23 +476,23 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WOW.prototype.cacheAnimationName = function(box) {
+    WOW.prototype.cacheAnimationName = function (box) {
       return this.animationNameCache.set(box, this.animationName(box));
     };
 
-    WOW.prototype.cachedAnimationName = function(box) {
+    WOW.prototype.cachedAnimationName = function (box) {
       return this.animationNameCache.get(box);
     };
 
-    WOW.prototype.scrollHandler = function() {
+    WOW.prototype.scrollHandler = function () {
       return this.scrolled = true;
     };
 
-    WOW.prototype.scrollCallback = function() {
+    WOW.prototype.scrollCallback = function () {
       var box;
       if (this.scrolled) {
         this.scrolled = false;
-        this.boxes = (function() {
+        this.boxes = (function () {
           var j, len, ref, results;
           ref = this.boxes;
           results = [];
@@ -515,7 +515,7 @@ if (typeof jQuery === 'undefined') {
       }
     };
 
-    WOW.prototype.offsetTop = function(element) {
+    WOW.prototype.offsetTop = function (element) {
       var top;
       while (element.offsetTop === void 0) {
         element = element.parentNode;
@@ -527,7 +527,7 @@ if (typeof jQuery === 'undefined') {
       return top;
     };
 
-    WOW.prototype.isVisible = function(box) {
+    WOW.prototype.isVisible = function (box) {
       var bottom, offset, top, viewBottom, viewTop;
       offset = box.getAttribute('data-wow-offset') || this.config.offset;
       viewTop = (this.config.scrollContainer && this.config.scrollContainer.scrollTop) || window.pageYOffset;
@@ -537,11 +537,11 @@ if (typeof jQuery === 'undefined') {
       return top <= viewBottom && bottom >= viewTop;
     };
 
-    WOW.prototype.util = function() {
+    WOW.prototype.util = function () {
       return this._util != null ? this._util : this._util = new Util();
     };
 
-    WOW.prototype.disabled = function() {
+    WOW.prototype.disabled = function () {
       return !this.config.mobile && this.util().isMobile(navigator.userAgent);
     };
 
@@ -560,11 +560,11 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under the MIT license
  */
-if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery"); + function(a) {
+if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requires jQuery"); + function (a) {
   "use strict";
   var b = a.fn.jquery.split(" ")[0].split(".");
   if (b[0] < 2 && b[1] < 9 || 1 == b[0] && 9 == b[1] && b[2] < 1 || b[0] > 2) throw new Error("Bootstrap's JavaScript requires jQuery version 1.9.1 or higher, but lower than version 3")
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b() {
@@ -581,40 +581,40 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       };
     return !1
   }
-  a.fn.emulateTransitionEnd = function(b) {
+  a.fn.emulateTransitionEnd = function (b) {
     var c = !1,
       d = this;
-    a(this).one("bsTransitionEnd", function() {
+    a(this).one("bsTransitionEnd", function () {
       c = !0
     });
-    var e = function() {
+    var e = function () {
       c || a(d).trigger(a.support.transition.end)
     };
     return setTimeout(e, b), this
-  }, a(function() {
+  }, a(function () {
     a.support.transition = b(), a.support.transition && (a.event.special.bsTransitionEnd = {
       bindType: a.support.transition.end,
       delegateType: a.support.transition.end,
-      handle: function(b) {
+      handle: function (b) {
         return a(b.target).is(this) ? b.handleObj.handler.apply(this, arguments) : void 0
       }
     })
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var c = a(this),
         e = c.data("bs.alert");
       e || c.data("bs.alert", e = new d(this)), "string" == typeof b && e[b].call(c)
     })
   }
   var c = '[data-dismiss="alert"]',
-    d = function(b) {
+    d = function (b) {
       a(b).on("click", c, this.close)
     };
-  d.VERSION = "3.3.6", d.TRANSITION_DURATION = 150, d.prototype.close = function(b) {
+  d.VERSION = "3.3.6", d.TRANSITION_DURATION = 150, d.prototype.close = function (b) {
     function c() {
       g.detach().trigger("closed.bs.alert").remove()
     }
@@ -625,34 +625,34 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     b && b.preventDefault(), g.length || (g = e.closest(".alert")), g.trigger(b = a.Event("close.bs.alert")), b.isDefaultPrevented() || (g.removeClass("in"), a.support.transition && g.hasClass("fade") ? g.one("bsTransitionEnd", c).emulateTransitionEnd(d.TRANSITION_DURATION) : c())
   };
   var e = a.fn.alert;
-  a.fn.alert = b, a.fn.alert.Constructor = d, a.fn.alert.noConflict = function() {
+  a.fn.alert = b, a.fn.alert.Constructor = d, a.fn.alert.noConflict = function () {
     return a.fn.alert = e, this
   }, a(document).on("click.bs.alert.data-api", c, d.prototype.close)
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.button"),
         f = "object" == typeof b && b;
       e || d.data("bs.button", e = new c(this, f)), "toggle" == b ? e.toggle() : b && e.setState(b)
     })
   }
-  var c = function(b, d) {
+  var c = function (b, d) {
     this.$element = a(b), this.options = a.extend({}, c.DEFAULTS, d), this.isLoading = !1
   };
   c.VERSION = "3.3.6", c.DEFAULTS = {
     loadingText: "loading..."
-  }, c.prototype.setState = function(b) {
+  }, c.prototype.setState = function (b) {
     var c = "disabled",
       d = this.$element,
       e = d.is("input") ? "val" : "html",
       f = d.data();
-    b += "Text", null == f.resetText && d.data("resetText", d[e]()), setTimeout(a.proxy(function() {
+    b += "Text", null == f.resetText && d.data("resetText", d[e]()), setTimeout(a.proxy(function () {
       d[e](null == f[b] ? this.options[b] : f[b]), "loadingText" == b ? (this.isLoading = !0, d.addClass(c).attr(c, c)) : this.isLoading && (this.isLoading = !1, d.removeClass(c).removeAttr(c))
     }, this), 0)
-  }, c.prototype.toggle = function() {
+  }, c.prototype.toggle = function () {
     var a = !0,
       b = this.$element.closest('[data-toggle="buttons"]');
     if (b.length) {
@@ -661,19 +661,19 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     } else this.$element.attr("aria-pressed", !this.$element.hasClass("active")), this.$element.toggleClass("active")
   };
   var d = a.fn.button;
-  a.fn.button = b, a.fn.button.Constructor = c, a.fn.button.noConflict = function() {
+  a.fn.button = b, a.fn.button.Constructor = c, a.fn.button.noConflict = function () {
     return a.fn.button = d, this
-  }, a(document).on("click.bs.button.data-api", '[data-toggle^="button"]', function(c) {
+  }, a(document).on("click.bs.button.data-api", '[data-toggle^="button"]', function (c) {
     var d = a(c.target);
     d.hasClass("btn") || (d = d.closest(".btn")), b.call(d, "toggle"), a(c.target).is('input[type="radio"]') || a(c.target).is('input[type="checkbox"]') || c.preventDefault()
-  }).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle^="button"]', function(b) {
+  }).on("focus.bs.button.data-api blur.bs.button.data-api", '[data-toggle^="button"]', function (b) {
     a(b.target).closest(".btn").toggleClass("focus", /^focus(in)?$/.test(b.type))
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.carousel"),
         f = a.extend({}, c.DEFAULTS, d.data(), "object" == typeof b && b),
@@ -681,7 +681,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       e || d.data("bs.carousel", e = new c(this, f)), "number" == typeof b ? e.to(b) : g ? e[g]() : f.interval && e.pause().cycle()
     })
   }
-  var c = function(b, c) {
+  var c = function (b, c) {
     this.$element = a(b), this.$indicators = this.$element.find(".carousel-indicators"), this.options = c, this.paused = null, this.sliding = null, this.interval = null, this.$active = null, this.$items = null, this.options.keyboard && this.$element.on("keydown.bs.carousel", a.proxy(this.keydown, this)), "hover" == this.options.pause && !("ontouchstart" in document.documentElement) && this.$element.on("mouseenter.bs.carousel", a.proxy(this.pause, this)).on("mouseleave.bs.carousel", a.proxy(this.cycle, this))
   };
   c.VERSION = "3.3.6", c.TRANSITION_DURATION = 600, c.DEFAULTS = {
@@ -689,7 +689,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     pause: "hover",
     wrap: !0,
     keyboard: !0
-  }, c.prototype.keydown = function(a) {
+  }, c.prototype.keydown = function (a) {
     if (!/input|textarea/i.test(a.target.tagName)) {
       switch (a.which) {
         case 37:
@@ -703,30 +703,30 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       }
       a.preventDefault()
     }
-  }, c.prototype.cycle = function(b) {
+  }, c.prototype.cycle = function (b) {
     return b || (this.paused = !1), this.interval && clearInterval(this.interval), this.options.interval && !this.paused && (this.interval = setInterval(a.proxy(this.next, this), this.options.interval)), this
-  }, c.prototype.getItemIndex = function(a) {
+  }, c.prototype.getItemIndex = function (a) {
     return this.$items = a.parent().children(".item"), this.$items.index(a || this.$active)
-  }, c.prototype.getItemForDirection = function(a, b) {
+  }, c.prototype.getItemForDirection = function (a, b) {
     var c = this.getItemIndex(b),
       d = "prev" == a && 0 === c || "next" == a && c == this.$items.length - 1;
     if (d && !this.options.wrap) return b;
     var e = "prev" == a ? -1 : 1,
       f = (c + e) % this.$items.length;
     return this.$items.eq(f)
-  }, c.prototype.to = function(a) {
+  }, c.prototype.to = function (a) {
     var b = this,
       c = this.getItemIndex(this.$active = this.$element.find(".item.active"));
-    return a > this.$items.length - 1 || 0 > a ? void 0 : this.sliding ? this.$element.one("slid.bs.carousel", function() {
+    return a > this.$items.length - 1 || 0 > a ? void 0 : this.sliding ? this.$element.one("slid.bs.carousel", function () {
       b.to(a)
     }) : c == a ? this.pause().cycle() : this.slide(a > c ? "next" : "prev", this.$items.eq(a))
-  }, c.prototype.pause = function(b) {
+  }, c.prototype.pause = function (b) {
     return b || (this.paused = !0), this.$element.find(".next, .prev").length && a.support.transition && (this.$element.trigger(a.support.transition.end), this.cycle(!0)), this.interval = clearInterval(this.interval), this
-  }, c.prototype.next = function() {
+  }, c.prototype.next = function () {
     return this.sliding ? void 0 : this.slide("next")
-  }, c.prototype.prev = function() {
+  }, c.prototype.prev = function () {
     return this.sliding ? void 0 : this.slide("prev")
-  }, c.prototype.slide = function(b, d) {
+  }, c.prototype.slide = function (b, d) {
     var e = this.$element.find(".item.active"),
       f = d || this.getItemForDirection(b, e),
       g = this.interval,
@@ -748,18 +748,18 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         relatedTarget: j,
         direction: h
       });
-      return a.support.transition && this.$element.hasClass("slide") ? (f.addClass(b), f[0].offsetWidth, e.addClass(h), f.addClass(h), e.one("bsTransitionEnd", function() {
-        f.removeClass([b, h].join(" ")).addClass("active"), e.removeClass(["active", h].join(" ")), i.sliding = !1, setTimeout(function() {
+      return a.support.transition && this.$element.hasClass("slide") ? (f.addClass(b), f[0].offsetWidth, e.addClass(h), f.addClass(h), e.one("bsTransitionEnd", function () {
+        f.removeClass([b, h].join(" ")).addClass("active"), e.removeClass(["active", h].join(" ")), i.sliding = !1, setTimeout(function () {
           i.$element.trigger(m)
         }, 0)
       }).emulateTransitionEnd(c.TRANSITION_DURATION)) : (e.removeClass("active"), f.addClass("active"), this.sliding = !1, this.$element.trigger(m)), g && this.cycle(), this
     }
   };
   var d = a.fn.carousel;
-  a.fn.carousel = b, a.fn.carousel.Constructor = c, a.fn.carousel.noConflict = function() {
+  a.fn.carousel = b, a.fn.carousel.Constructor = c, a.fn.carousel.noConflict = function () {
     return a.fn.carousel = d, this
   };
-  var e = function(c) {
+  var e = function (c) {
     var d, e = a(this),
       f = a(e.attr("data-target") || (d = e.attr("href")) && d.replace(/.*(?=#[^\s]+$)/, ""));
     if (f.hasClass("carousel")) {
@@ -768,13 +768,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       h && (g.interval = !1), b.call(f, g), h && f.data("bs.carousel").to(h), c.preventDefault()
     }
   };
-  a(document).on("click.bs.carousel.data-api", "[data-slide]", e).on("click.bs.carousel.data-api", "[data-slide-to]", e), a(window).on("load", function() {
-    a('[data-ride="carousel"]').each(function() {
+  a(document).on("click.bs.carousel.data-api", "[data-slide]", e).on("click.bs.carousel.data-api", "[data-slide-to]", e), a(window).on("load", function () {
+    a('[data-ride="carousel"]').each(function () {
       var c = a(this);
       b.call(c, c.data())
     })
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
@@ -783,22 +783,22 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
 
   function c(b) {
-    return this.each(function() {
+    return this.each(function () {
       var c = a(this),
         e = c.data("bs.collapse"),
         f = a.extend({}, d.DEFAULTS, c.data(), "object" == typeof b && b);
       !e && f.toggle && /show|hide/.test(b) && (f.toggle = !1), e || c.data("bs.collapse", e = new d(this, f)), "string" == typeof b && e[b]()
     })
   }
-  var d = function(b, c) {
+  var d = function (b, c) {
     this.$element = a(b), this.options = a.extend({}, d.DEFAULTS, c), this.$trigger = a('[data-toggle="collapse"][href="#' + b.id + '"],[data-toggle="collapse"][data-target="#' + b.id + '"]'), this.transitioning = null, this.options.parent ? this.$parent = this.getParent() : this.addAriaAndCollapsedClass(this.$element, this.$trigger), this.options.toggle && this.toggle()
   };
   d.VERSION = "3.3.6", d.TRANSITION_DURATION = 350, d.DEFAULTS = {
     toggle: !0
-  }, d.prototype.dimension = function() {
+  }, d.prototype.dimension = function () {
     var a = this.$element.hasClass("width");
     return a ? "width" : "height"
-  }, d.prototype.show = function() {
+  }, d.prototype.show = function () {
     if (!this.transitioning && !this.$element.hasClass("in")) {
       var b, e = this.$parent && this.$parent.children(".panel").children(".in, .collapsing");
       if (!(e && e.length && (b = e.data("bs.collapse"), b && b.transitioning))) {
@@ -807,7 +807,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
           e && e.length && (c.call(e, "hide"), b || e.data("bs.collapse", null));
           var g = this.dimension();
           this.$element.removeClass("collapse").addClass("collapsing")[g](0).attr("aria-expanded", !0), this.$trigger.removeClass("collapsed").attr("aria-expanded", !0), this.transitioning = 1;
-          var h = function() {
+          var h = function () {
             this.$element.removeClass("collapsing").addClass("collapse in")[g](""), this.transitioning = 0, this.$element.trigger("shown.bs.collapse")
           };
           if (!a.support.transition) return h.call(this);
@@ -816,33 +816,33 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         }
       }
     }
-  }, d.prototype.hide = function() {
+  }, d.prototype.hide = function () {
     if (!this.transitioning && this.$element.hasClass("in")) {
       var b = a.Event("hide.bs.collapse");
       if (this.$element.trigger(b), !b.isDefaultPrevented()) {
         var c = this.dimension();
         this.$element[c](this.$element[c]())[0].offsetHeight, this.$element.addClass("collapsing").removeClass("collapse in").attr("aria-expanded", !1), this.$trigger.addClass("collapsed").attr("aria-expanded", !1), this.transitioning = 1;
-        var e = function() {
+        var e = function () {
           this.transitioning = 0, this.$element.removeClass("collapsing").addClass("collapse").trigger("hidden.bs.collapse")
         };
         return a.support.transition ? void this.$element[c](0).one("bsTransitionEnd", a.proxy(e, this)).emulateTransitionEnd(d.TRANSITION_DURATION) : e.call(this)
       }
     }
-  }, d.prototype.toggle = function() {
+  }, d.prototype.toggle = function () {
     this[this.$element.hasClass("in") ? "hide" : "show"]()
-  }, d.prototype.getParent = function() {
-    return a(this.options.parent).find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]').each(a.proxy(function(c, d) {
+  }, d.prototype.getParent = function () {
+    return a(this.options.parent).find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]').each(a.proxy(function (c, d) {
       var e = a(d);
       this.addAriaAndCollapsedClass(b(e), e)
     }, this)).end()
-  }, d.prototype.addAriaAndCollapsedClass = function(a, b) {
+  }, d.prototype.addAriaAndCollapsedClass = function (a, b) {
     var c = a.hasClass("in");
     a.attr("aria-expanded", c), b.toggleClass("collapsed", !c).attr("aria-expanded", c)
   };
   var e = a.fn.collapse;
-  a.fn.collapse = c, a.fn.collapse.Constructor = d, a.fn.collapse.noConflict = function() {
+  a.fn.collapse = c, a.fn.collapse.Constructor = d, a.fn.collapse.noConflict = function () {
     return a.fn.collapse = e, this
-  }, a(document).on("click.bs.collapse.data-api", '[data-toggle="collapse"]', function(d) {
+  }, a(document).on("click.bs.collapse.data-api", '[data-toggle="collapse"]', function (d) {
     var e = a(this);
     e.attr("data-target") || d.preventDefault();
     var f = b(e),
@@ -850,7 +850,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       h = g ? "toggle" : e.data();
     c.call(f, h)
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
@@ -861,7 +861,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
 
   function c(c) {
-    c && 3 === c.which || (a(e).remove(), a(f).each(function() {
+    c && 3 === c.which || (a(e).remove(), a(f).each(function () {
       var d = a(this),
         e = b(d),
         f = {
@@ -872,7 +872,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
 
   function d(b) {
-    return this.each(function() {
+    return this.each(function () {
       var c = a(this),
         d = c.data("bs.dropdown");
       d || c.data("bs.dropdown", d = new g(this)), "string" == typeof b && d[b].call(c)
@@ -880,10 +880,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
   var e = ".dropdown-backdrop",
     f = '[data-toggle="dropdown"]',
-    g = function(b) {
+    g = function (b) {
       a(b).on("click.bs.dropdown", this.toggle)
     };
-  g.VERSION = "3.3.6", g.prototype.toggle = function(d) {
+  g.VERSION = "3.3.6", g.prototype.toggle = function (d) {
     var e = a(this);
     if (!e.is(".disabled, :disabled")) {
       var f = b(e),
@@ -898,7 +898,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       }
       return !1
     }
-  }, g.prototype.keydown = function(c) {
+  }, g.prototype.keydown = function (c) {
     if (/(38|40|27|32)/.test(c.which) && !/input|textarea/i.test(c.target.tagName)) {
       var d = a(this);
       if (c.preventDefault(), c.stopPropagation(), !d.is(".disabled, :disabled")) {
@@ -915,24 +915,24 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }
   };
   var h = a.fn.dropdown;
-  a.fn.dropdown = d, a.fn.dropdown.Constructor = g, a.fn.dropdown.noConflict = function() {
+  a.fn.dropdown = d, a.fn.dropdown.Constructor = g, a.fn.dropdown.noConflict = function () {
     return a.fn.dropdown = h, this
-  }, a(document).on("click.bs.dropdown.data-api", c).on("click.bs.dropdown.data-api", ".dropdown form", function(a) {
+  }, a(document).on("click.bs.dropdown.data-api", c).on("click.bs.dropdown.data-api", ".dropdown form", function (a) {
     a.stopPropagation()
   }).on("click.bs.dropdown.data-api", f, g.prototype.toggle).on("keydown.bs.dropdown.data-api", f, g.prototype.keydown).on("keydown.bs.dropdown.data-api", ".dropdown-menu", g.prototype.keydown)
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b, d) {
-    return this.each(function() {
+    return this.each(function () {
       var e = a(this),
         f = e.data("bs.modal"),
         g = a.extend({}, c.DEFAULTS, e.data(), "object" == typeof b && b);
       f || e.data("bs.modal", f = new c(this, g)), "string" == typeof b ? f[b](d) : g.show && f.show(d)
     })
   }
-  var c = function(b, c) {
-    this.options = c, this.$body = a(document.body), this.$element = a(b), this.$dialog = this.$element.find(".modal-dialog"), this.$backdrop = null, this.isShown = null, this.originalBodyPad = null, this.scrollbarWidth = 0, this.ignoreBackdropClick = !1, this.options.remote && this.$element.find(".modal-content").load(this.options.remote, a.proxy(function() {
+  var c = function (b, c) {
+    this.options = c, this.$body = a(document.body), this.$element = a(b), this.$dialog = this.$element.find(".modal-dialog"), this.$backdrop = null, this.isShown = null, this.originalBodyPad = null, this.scrollbarWidth = 0, this.ignoreBackdropClick = !1, this.options.remote && this.$element.find(".modal-content").load(this.options.remote, a.proxy(function () {
       this.$element.trigger("loaded.bs.modal")
     }, this))
   };
@@ -940,121 +940,121 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     backdrop: !0,
     keyboard: !0,
     show: !0
-  }, c.prototype.toggle = function(a) {
+  }, c.prototype.toggle = function (a) {
     return this.isShown ? this.hide() : this.show(a)
-  }, c.prototype.show = function(b) {
+  }, c.prototype.show = function (b) {
     var d = this,
       e = a.Event("show.bs.modal", {
         relatedTarget: b
       });
-    this.$element.trigger(e), this.isShown || e.isDefaultPrevented() || (this.isShown = !0, this.checkScrollbar(), this.setScrollbar(), this.$body.addClass("modal-open"), this.escape(), this.resize(), this.$element.on("click.dismiss.bs.modal", '[data-dismiss="modal"]', a.proxy(this.hide, this)), this.$dialog.on("mousedown.dismiss.bs.modal", function() {
-      d.$element.one("mouseup.dismiss.bs.modal", function(b) {
+    this.$element.trigger(e), this.isShown || e.isDefaultPrevented() || (this.isShown = !0, this.checkScrollbar(), this.setScrollbar(), this.$body.addClass("modal-open"), this.escape(), this.resize(), this.$element.on("click.dismiss.bs.modal", '[data-dismiss="modal"]', a.proxy(this.hide, this)), this.$dialog.on("mousedown.dismiss.bs.modal", function () {
+      d.$element.one("mouseup.dismiss.bs.modal", function (b) {
         a(b.target).is(d.$element) && (d.ignoreBackdropClick = !0)
       })
-    }), this.backdrop(function() {
+    }), this.backdrop(function () {
       var e = a.support.transition && d.$element.hasClass("fade");
       d.$element.parent().length || d.$element.appendTo(d.$body), d.$element.show().scrollTop(0), d.adjustDialog(), e && d.$element[0].offsetWidth, d.$element.addClass("in"), d.enforceFocus();
       var f = a.Event("shown.bs.modal", {
         relatedTarget: b
       });
-      e ? d.$dialog.one("bsTransitionEnd", function() {
+      e ? d.$dialog.one("bsTransitionEnd", function () {
         d.$element.trigger("focus").trigger(f)
       }).emulateTransitionEnd(c.TRANSITION_DURATION) : d.$element.trigger("focus").trigger(f)
     }))
-  }, c.prototype.hide = function(b) {
+  }, c.prototype.hide = function (b) {
     b && b.preventDefault(), b = a.Event("hide.bs.modal"), this.$element.trigger(b), this.isShown && !b.isDefaultPrevented() && (this.isShown = !1, this.escape(), this.resize(), a(document).off("focusin.bs.modal"), this.$element.removeClass("in").off("click.dismiss.bs.modal").off("mouseup.dismiss.bs.modal"), this.$dialog.off("mousedown.dismiss.bs.modal"), a.support.transition && this.$element.hasClass("fade") ? this.$element.one("bsTransitionEnd", a.proxy(this.hideModal, this)).emulateTransitionEnd(c.TRANSITION_DURATION) : this.hideModal())
-  }, c.prototype.enforceFocus = function() {
-    a(document).off("focusin.bs.modal").on("focusin.bs.modal", a.proxy(function(a) {
+  }, c.prototype.enforceFocus = function () {
+    a(document).off("focusin.bs.modal").on("focusin.bs.modal", a.proxy(function (a) {
       this.$element[0] === a.target || this.$element.has(a.target).length || this.$element.trigger("focus")
     }, this))
-  }, c.prototype.escape = function() {
-    this.isShown && this.options.keyboard ? this.$element.on("keydown.dismiss.bs.modal", a.proxy(function(a) {
+  }, c.prototype.escape = function () {
+    this.isShown && this.options.keyboard ? this.$element.on("keydown.dismiss.bs.modal", a.proxy(function (a) {
       27 == a.which && this.hide()
     }, this)) : this.isShown || this.$element.off("keydown.dismiss.bs.modal")
-  }, c.prototype.resize = function() {
+  }, c.prototype.resize = function () {
     this.isShown ? a(window).on("resize.bs.modal", a.proxy(this.handleUpdate, this)) : a(window).off("resize.bs.modal")
-  }, c.prototype.hideModal = function() {
+  }, c.prototype.hideModal = function () {
     var a = this;
-    this.$element.hide(), this.backdrop(function() {
+    this.$element.hide(), this.backdrop(function () {
       a.$body.removeClass("modal-open"), a.resetAdjustments(), a.resetScrollbar(), a.$element.trigger("hidden.bs.modal")
     })
-  }, c.prototype.removeBackdrop = function() {
+  }, c.prototype.removeBackdrop = function () {
     this.$backdrop && this.$backdrop.remove(), this.$backdrop = null
-  }, c.prototype.backdrop = function(b) {
+  }, c.prototype.backdrop = function (b) {
     var d = this,
       e = this.$element.hasClass("fade") ? "fade" : "";
     if (this.isShown && this.options.backdrop) {
       var f = a.support.transition && e;
-      if (this.$backdrop = a(document.createElement("div")).addClass("modal-backdrop " + e).appendTo(this.$body), this.$element.on("click.dismiss.bs.modal", a.proxy(function(a) {
+      if (this.$backdrop = a(document.createElement("div")).addClass("modal-backdrop " + e).appendTo(this.$body), this.$element.on("click.dismiss.bs.modal", a.proxy(function (a) {
           return this.ignoreBackdropClick ? void(this.ignoreBackdropClick = !1) : void(a.target === a.currentTarget && ("static" == this.options.backdrop ? this.$element[0].focus() : this.hide()))
         }, this)), f && this.$backdrop[0].offsetWidth, this.$backdrop.addClass("in"), !b) return;
       f ? this.$backdrop.one("bsTransitionEnd", b).emulateTransitionEnd(c.BACKDROP_TRANSITION_DURATION) : b()
     } else if (!this.isShown && this.$backdrop) {
       this.$backdrop.removeClass("in");
-      var g = function() {
+      var g = function () {
         d.removeBackdrop(), b && b()
       };
       a.support.transition && this.$element.hasClass("fade") ? this.$backdrop.one("bsTransitionEnd", g).emulateTransitionEnd(c.BACKDROP_TRANSITION_DURATION) : g()
     } else b && b()
-  }, c.prototype.handleUpdate = function() {
+  }, c.prototype.handleUpdate = function () {
     this.adjustDialog()
-  }, c.prototype.adjustDialog = function() {
+  }, c.prototype.adjustDialog = function () {
     var a = this.$element[0].scrollHeight > document.documentElement.clientHeight;
     this.$element.css({
       paddingLeft: !this.bodyIsOverflowing && a ? this.scrollbarWidth : "",
       paddingRight: this.bodyIsOverflowing && !a ? this.scrollbarWidth : ""
     })
-  }, c.prototype.resetAdjustments = function() {
+  }, c.prototype.resetAdjustments = function () {
     this.$element.css({
       paddingLeft: "",
       paddingRight: ""
     })
-  }, c.prototype.checkScrollbar = function() {
+  }, c.prototype.checkScrollbar = function () {
     var a = window.innerWidth;
     if (!a) {
       var b = document.documentElement.getBoundingClientRect();
       a = b.right - Math.abs(b.left)
     }
     this.bodyIsOverflowing = document.body.clientWidth < a, this.scrollbarWidth = this.measureScrollbar()
-  }, c.prototype.setScrollbar = function() {
+  }, c.prototype.setScrollbar = function () {
     var a = parseInt(this.$body.css("padding-right") || 0, 10);
     this.originalBodyPad = document.body.style.paddingRight || "", this.bodyIsOverflowing && this.$body.css("padding-right", a + this.scrollbarWidth)
-  }, c.prototype.resetScrollbar = function() {
+  }, c.prototype.resetScrollbar = function () {
     this.$body.css("padding-right", this.originalBodyPad)
-  }, c.prototype.measureScrollbar = function() {
+  }, c.prototype.measureScrollbar = function () {
     var a = document.createElement("div");
     a.className = "modal-scrollbar-measure", this.$body.append(a);
     var b = a.offsetWidth - a.clientWidth;
     return this.$body[0].removeChild(a), b
   };
   var d = a.fn.modal;
-  a.fn.modal = b, a.fn.modal.Constructor = c, a.fn.modal.noConflict = function() {
+  a.fn.modal = b, a.fn.modal.Constructor = c, a.fn.modal.noConflict = function () {
     return a.fn.modal = d, this
-  }, a(document).on("click.bs.modal.data-api", '[data-toggle="modal"]', function(c) {
+  }, a(document).on("click.bs.modal.data-api", '[data-toggle="modal"]', function (c) {
     var d = a(this),
       e = d.attr("href"),
       f = a(d.attr("data-target") || e && e.replace(/.*(?=#[^\s]+$)/, "")),
       g = f.data("bs.modal") ? "toggle" : a.extend({
         remote: !/#/.test(e) && e
       }, f.data(), d.data());
-    d.is("a") && c.preventDefault(), f.one("show.bs.modal", function(a) {
-      a.isDefaultPrevented() || f.one("hidden.bs.modal", function() {
+    d.is("a") && c.preventDefault(), f.one("show.bs.modal", function (a) {
+      a.isDefaultPrevented() || f.one("hidden.bs.modal", function () {
         d.is(":visible") && d.trigger("focus")
       })
     }), b.call(f, g, this)
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.tooltip"),
         f = "object" == typeof b && b;
       (e || !/destroy|hide/.test(b)) && (e || d.data("bs.tooltip", e = new c(this, f)), "string" == typeof b && e[b]())
     })
   }
-  var c = function(a, b) {
+  var c = function (a, b) {
     this.type = null, this.options = null, this.enabled = null, this.timeout = null, this.hoverState = null, this.$element = null, this.inState = null, this.init("tooltip", a, b)
   };
   c.VERSION = "3.3.6", c.TRANSITION_DURATION = 150, c.DEFAULTS = {
@@ -1071,7 +1071,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       selector: "body",
       padding: 0
     }
-  }, c.prototype.init = function(b, c, d) {
+  }, c.prototype.init = function (b, c, d) {
     if (this.enabled = !0, this.type = b, this.$element = a(c), this.options = this.getOptions(d), this.$viewport = this.options.viewport && a(a.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : this.options.viewport.selector || this.options.viewport), this.inState = {
         click: !1,
         hover: !1,
@@ -1090,34 +1090,34 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       trigger: "manual",
       selector: ""
     }) : this.fixTitle()
-  }, c.prototype.getDefaults = function() {
+  }, c.prototype.getDefaults = function () {
     return c.DEFAULTS
-  }, c.prototype.getOptions = function(b) {
+  }, c.prototype.getOptions = function (b) {
     return b = a.extend({}, this.getDefaults(), this.$element.data(), b), b.delay && "number" == typeof b.delay && (b.delay = {
       show: b.delay,
       hide: b.delay
     }), b
-  }, c.prototype.getDelegateOptions = function() {
+  }, c.prototype.getDelegateOptions = function () {
     var b = {},
       c = this.getDefaults();
-    return this._options && a.each(this._options, function(a, d) {
+    return this._options && a.each(this._options, function (a, d) {
       c[a] != d && (b[a] = d)
     }), b
-  }, c.prototype.enter = function(b) {
+  }, c.prototype.enter = function (b) {
     var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
-    return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusin" == b.type ? "focus" : "hover"] = !0), c.tip().hasClass("in") || "in" == c.hoverState ? void(c.hoverState = "in") : (clearTimeout(c.timeout), c.hoverState = "in", c.options.delay && c.options.delay.show ? void(c.timeout = setTimeout(function() {
+    return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusin" == b.type ? "focus" : "hover"] = !0), c.tip().hasClass("in") || "in" == c.hoverState ? void(c.hoverState = "in") : (clearTimeout(c.timeout), c.hoverState = "in", c.options.delay && c.options.delay.show ? void(c.timeout = setTimeout(function () {
       "in" == c.hoverState && c.show()
     }, c.options.delay.show)) : c.show())
-  }, c.prototype.isInStateTrue = function() {
+  }, c.prototype.isInStateTrue = function () {
     for (var a in this.inState)
       if (this.inState[a]) return !0;
     return !1
-  }, c.prototype.leave = function(b) {
+  }, c.prototype.leave = function (b) {
     var c = b instanceof this.constructor ? b : a(b.currentTarget).data("bs." + this.type);
-    return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusout" == b.type ? "focus" : "hover"] = !1), c.isInStateTrue() ? void 0 : (clearTimeout(c.timeout), c.hoverState = "out", c.options.delay && c.options.delay.hide ? void(c.timeout = setTimeout(function() {
+    return c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c)), b instanceof a.Event && (c.inState["focusout" == b.type ? "focus" : "hover"] = !1), c.isInStateTrue() ? void 0 : (clearTimeout(c.timeout), c.hoverState = "out", c.options.delay && c.options.delay.hide ? void(c.timeout = setTimeout(function () {
       "out" == c.hoverState && c.hide()
     }, c.options.delay.hide)) : c.hide())
-  }, c.prototype.show = function() {
+  }, c.prototype.show = function () {
     var b = a.Event("show.bs." + this.type);
     if (this.hasContent() && this.enabled) {
       this.$element.trigger(b);
@@ -1145,20 +1145,20 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       }
       var p = this.getCalculatedOffset(h, k, l, m);
       this.applyPlacement(p, h);
-      var q = function() {
+      var q = function () {
         var a = e.hoverState;
         e.$element.trigger("shown.bs." + e.type), e.hoverState = null, "out" == a && e.leave(e)
       };
       a.support.transition && this.$tip.hasClass("fade") ? f.one("bsTransitionEnd", q).emulateTransitionEnd(c.TRANSITION_DURATION) : q()
     }
-  }, c.prototype.applyPlacement = function(b, c) {
+  }, c.prototype.applyPlacement = function (b, c) {
     var d = this.tip(),
       e = d[0].offsetWidth,
       f = d[0].offsetHeight,
       g = parseInt(d.css("margin-top"), 10),
       h = parseInt(d.css("margin-left"), 10);
     isNaN(g) && (g = 0), isNaN(h) && (h = 0), b.top += g, b.left += h, a.offset.setOffset(d[0], a.extend({
-      using: function(a) {
+      using: function (a) {
         d.css({
           top: Math.round(a.top),
           left: Math.round(a.left)
@@ -1174,13 +1174,13 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       m = l ? 2 * k.left - e + i : 2 * k.top - f + j,
       n = l ? "offsetWidth" : "offsetHeight";
     d.offset(b), this.replaceArrow(m, d[0][n], l)
-  }, c.prototype.replaceArrow = function(a, b, c) {
+  }, c.prototype.replaceArrow = function (a, b, c) {
     this.arrow().css(c ? "left" : "top", 50 * (1 - a / b) + "%").css(c ? "top" : "left", "")
-  }, c.prototype.setContent = function() {
+  }, c.prototype.setContent = function () {
     var a = this.tip(),
       b = this.getTitle();
     a.find(".tooltip-inner")[this.options.html ? "html" : "text"](b), a.removeClass("fade in top bottom left right")
-  }, c.prototype.hide = function(b) {
+  }, c.prototype.hide = function (b) {
     function d() {
       "in" != e.hoverState && f.detach(), e.$element.removeAttr("aria-describedby").trigger("hidden.bs." + e.type), b && b()
     }
@@ -1188,12 +1188,12 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       f = a(this.$tip),
       g = a.Event("hide.bs." + this.type);
     return this.$element.trigger(g), g.isDefaultPrevented() ? void 0 : (f.removeClass("in"), a.support.transition && f.hasClass("fade") ? f.one("bsTransitionEnd", d).emulateTransitionEnd(c.TRANSITION_DURATION) : d(), this.hoverState = null, this)
-  }, c.prototype.fixTitle = function() {
+  }, c.prototype.fixTitle = function () {
     var a = this.$element;
     (a.attr("title") || "string" != typeof a.attr("data-original-title")) && a.attr("data-original-title", a.attr("title") || "").attr("title", "")
-  }, c.prototype.hasContent = function() {
+  }, c.prototype.hasContent = function () {
     return this.getTitle()
-  }, c.prototype.getPosition = function(b) {
+  }, c.prototype.getPosition = function (b) {
     b = b || this.$element;
     var c = b[0],
       d = "BODY" == c.tagName,
@@ -1214,7 +1214,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         height: a(window).height()
       } : null;
     return a.extend({}, e, g, h, f)
-  }, c.prototype.getCalculatedOffset = function(a, b, c, d) {
+  }, c.prototype.getCalculatedOffset = function (a, b, c, d) {
     return "bottom" == a ? {
       top: b.top + b.height,
       left: b.left + b.width / 2 - c / 2
@@ -1228,7 +1228,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       top: b.top + b.height / 2 - d / 2,
       left: b.left + b.width
     }
-  }, c.prototype.getViewportAdjustedDelta = function(a, b, c, d) {
+  }, c.prototype.getViewportAdjustedDelta = function (a, b, c, d) {
     var e = {
       top: 0,
       left: 0
@@ -1246,49 +1246,49 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       j < g.left ? e.left = g.left - j : k > g.right && (e.left = g.left + g.width - k)
     }
     return e
-  }, c.prototype.getTitle = function() {
+  }, c.prototype.getTitle = function () {
     var a, b = this.$element,
       c = this.options;
     return a = b.attr("data-original-title") || ("function" == typeof c.title ? c.title.call(b[0]) : c.title)
-  }, c.prototype.getUID = function(a) {
+  }, c.prototype.getUID = function (a) {
     do a += ~~(1e6 * Math.random()); while (document.getElementById(a));
     return a
-  }, c.prototype.tip = function() {
+  }, c.prototype.tip = function () {
     if (!this.$tip && (this.$tip = a(this.options.template), 1 != this.$tip.length)) throw new Error(this.type + " `template` option must consist of exactly 1 top-level element!");
     return this.$tip
-  }, c.prototype.arrow = function() {
+  }, c.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find(".tooltip-arrow")
-  }, c.prototype.enable = function() {
+  }, c.prototype.enable = function () {
     this.enabled = !0
-  }, c.prototype.disable = function() {
+  }, c.prototype.disable = function () {
     this.enabled = !1
-  }, c.prototype.toggleEnabled = function() {
+  }, c.prototype.toggleEnabled = function () {
     this.enabled = !this.enabled
-  }, c.prototype.toggle = function(b) {
+  }, c.prototype.toggle = function (b) {
     var c = this;
     b && (c = a(b.currentTarget).data("bs." + this.type), c || (c = new this.constructor(b.currentTarget, this.getDelegateOptions()), a(b.currentTarget).data("bs." + this.type, c))), b ? (c.inState.click = !c.inState.click, c.isInStateTrue() ? c.enter(c) : c.leave(c)) : c.tip().hasClass("in") ? c.leave(c) : c.enter(c)
-  }, c.prototype.destroy = function() {
+  }, c.prototype.destroy = function () {
     var a = this;
-    clearTimeout(this.timeout), this.hide(function() {
+    clearTimeout(this.timeout), this.hide(function () {
       a.$element.off("." + a.type).removeData("bs." + a.type), a.$tip && a.$tip.detach(), a.$tip = null, a.$arrow = null, a.$viewport = null
     })
   };
   var d = a.fn.tooltip;
-  a.fn.tooltip = b, a.fn.tooltip.Constructor = c, a.fn.tooltip.noConflict = function() {
+  a.fn.tooltip = b, a.fn.tooltip.Constructor = c, a.fn.tooltip.noConflict = function () {
     return a.fn.tooltip = d, this
   }
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.popover"),
         f = "object" == typeof b && b;
       (e || !/destroy|hide/.test(b)) && (e || d.data("bs.popover", e = new c(this, f)), "string" == typeof b && e[b]())
     })
   }
-  var c = function(a, b) {
+  var c = function (a, b) {
     this.init("popover", a, b)
   };
   if (!a.fn.tooltip) throw new Error("Popover requires tooltip.js");
@@ -1297,27 +1297,27 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     trigger: "click",
     content: "",
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
-  }), c.prototype = a.extend({}, a.fn.tooltip.Constructor.prototype), c.prototype.constructor = c, c.prototype.getDefaults = function() {
+  }), c.prototype = a.extend({}, a.fn.tooltip.Constructor.prototype), c.prototype.constructor = c, c.prototype.getDefaults = function () {
     return c.DEFAULTS
-  }, c.prototype.setContent = function() {
+  }, c.prototype.setContent = function () {
     var a = this.tip(),
       b = this.getTitle(),
       c = this.getContent();
     a.find(".popover-title")[this.options.html ? "html" : "text"](b), a.find(".popover-content").children().detach().end()[this.options.html ? "string" == typeof c ? "html" : "append" : "text"](c), a.removeClass("fade top bottom left right in"), a.find(".popover-title").html() || a.find(".popover-title").hide()
-  }, c.prototype.hasContent = function() {
+  }, c.prototype.hasContent = function () {
     return this.getTitle() || this.getContent()
-  }, c.prototype.getContent = function() {
+  }, c.prototype.getContent = function () {
     var a = this.$element,
       b = this.options;
     return a.attr("data-content") || ("function" == typeof b.content ? b.content.call(a[0]) : b.content)
-  }, c.prototype.arrow = function() {
+  }, c.prototype.arrow = function () {
     return this.$arrow = this.$arrow || this.tip().find(".arrow")
   };
   var d = a.fn.popover;
-  a.fn.popover = b, a.fn.popover.Constructor = c, a.fn.popover.noConflict = function() {
+  a.fn.popover = b, a.fn.popover.Constructor = c, a.fn.popover.noConflict = function () {
     return a.fn.popover = d, this
   }
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(c, d) {
@@ -1325,7 +1325,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
 
   function c(c) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.scrollspy"),
         f = "object" == typeof c && c;
@@ -1334,25 +1334,25 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   }
   b.VERSION = "3.3.6", b.DEFAULTS = {
     offset: 10
-  }, b.prototype.getScrollHeight = function() {
+  }, b.prototype.getScrollHeight = function () {
     return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
-  }, b.prototype.refresh = function() {
+  }, b.prototype.refresh = function () {
     var b = this,
       c = "offset",
       d = 0;
-    this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight(), a.isWindow(this.$scrollElement[0]) || (c = "position", d = this.$scrollElement.scrollTop()), this.$body.find(this.selector).map(function() {
+    this.offsets = [], this.targets = [], this.scrollHeight = this.getScrollHeight(), a.isWindow(this.$scrollElement[0]) || (c = "position", d = this.$scrollElement.scrollTop()), this.$body.find(this.selector).map(function () {
       var b = a(this),
         e = b.data("target") || b.attr("href"),
         f = /^#./.test(e) && a(e);
       return f && f.length && f.is(":visible") && [
         [f[c]().top + d, e]
       ] || null
-    }).sort(function(a, b) {
+    }).sort(function (a, b) {
       return a[0] - b[0]
-    }).each(function() {
+    }).each(function () {
       b.offsets.push(this[0]), b.targets.push(this[1])
     })
-  }, b.prototype.process = function() {
+  }, b.prototype.process = function () {
     var a, b = this.$scrollElement.scrollTop() + this.options.offset,
       c = this.getScrollHeight(),
       d = this.options.offset + c - this.$scrollElement.height(),
@@ -1362,37 +1362,37 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     if (this.scrollHeight != c && this.refresh(), b >= d) return g != (a = f[f.length - 1]) && this.activate(a);
     if (g && b < e[0]) return this.activeTarget = null, this.clear();
     for (a = e.length; a--;) g != f[a] && b >= e[a] && (void 0 === e[a + 1] || b < e[a + 1]) && this.activate(f[a])
-  }, b.prototype.activate = function(b) {
+  }, b.prototype.activate = function (b) {
     this.activeTarget = b, this.clear();
     var c = this.selector + '[data-target="' + b + '"],' + this.selector + '[href="' + b + '"]',
       d = a(c).parents("li").addClass("active");
     d.parent(".dropdown-menu").length && (d = d.closest("li.dropdown").addClass("active")), d.trigger("activate.bs.scrollspy")
-  }, b.prototype.clear = function() {
+  }, b.prototype.clear = function () {
     a(this.selector).parentsUntil(this.options.target, ".active").removeClass("active")
   };
   var d = a.fn.scrollspy;
-  a.fn.scrollspy = c, a.fn.scrollspy.Constructor = b, a.fn.scrollspy.noConflict = function() {
+  a.fn.scrollspy = c, a.fn.scrollspy.Constructor = b, a.fn.scrollspy.noConflict = function () {
     return a.fn.scrollspy = d, this
-  }, a(window).on("load.bs.scrollspy.data-api", function() {
-    a('[data-spy="scroll"]').each(function() {
+  }, a(window).on("load.bs.scrollspy.data-api", function () {
+    a('[data-spy="scroll"]').each(function () {
       var b = a(this);
       c.call(b, b.data())
     })
   })
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.tab");
       e || d.data("bs.tab", e = new c(this)), "string" == typeof b && e[b]()
     })
   }
-  var c = function(b) {
+  var c = function (b) {
     this.element = a(b)
   };
-  c.VERSION = "3.3.6", c.TRANSITION_DURATION = 150, c.prototype.show = function() {
+  c.VERSION = "3.3.6", c.TRANSITION_DURATION = 150, c.prototype.show = function () {
     var b = this.element,
       c = b.closest("ul:not(.dropdown-menu)"),
       d = b.data("target");
@@ -1406,7 +1406,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         });
       if (e.trigger(f), b.trigger(g), !g.isDefaultPrevented() && !f.isDefaultPrevented()) {
         var h = a(d);
-        this.activate(b.closest("li"), c), this.activate(h, h.parent(), function() {
+        this.activate(b.closest("li"), c), this.activate(h, h.parent(), function () {
           e.trigger({
             type: "hidden.bs.tab",
             relatedTarget: b[0]
@@ -1417,7 +1417,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
         })
       }
     }
-  }, c.prototype.activate = function(b, d, e) {
+  }, c.prototype.activate = function (b, d, e) {
     function f() {
       g.removeClass("active").find("> .dropdown-menu > .active").removeClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !1), b.addClass("active").find('[data-toggle="tab"]').attr("aria-expanded", !0), h ? (b[0].offsetWidth, b.addClass("in")) : b.removeClass("fade"), b.parent(".dropdown-menu").length && b.closest("li.dropdown").addClass("active").end().find('[data-toggle="tab"]').attr("aria-expanded", !0), e && e()
     }
@@ -1426,31 +1426,31 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     g.length && h ? g.one("bsTransitionEnd", f).emulateTransitionEnd(c.TRANSITION_DURATION) : f(), g.removeClass("in")
   };
   var d = a.fn.tab;
-  a.fn.tab = b, a.fn.tab.Constructor = c, a.fn.tab.noConflict = function() {
+  a.fn.tab = b, a.fn.tab.Constructor = c, a.fn.tab.noConflict = function () {
     return a.fn.tab = d, this
   };
-  var e = function(c) {
+  var e = function (c) {
     c.preventDefault(), b.call(a(this), "show")
   };
   a(document).on("click.bs.tab.data-api", '[data-toggle="tab"]', e).on("click.bs.tab.data-api", '[data-toggle="pill"]', e)
-}(jQuery), + function(a) {
+}(jQuery), + function (a) {
   "use strict";
 
   function b(b) {
-    return this.each(function() {
+    return this.each(function () {
       var d = a(this),
         e = d.data("bs.affix"),
         f = "object" == typeof b && b;
       e || d.data("bs.affix", e = new c(this, f)), "string" == typeof b && e[b]()
     })
   }
-  var c = function(b, d) {
+  var c = function (b, d) {
     this.options = a.extend({}, c.DEFAULTS, d), this.$target = a(this.options.target).on("scroll.bs.affix.data-api", a.proxy(this.checkPosition, this)).on("click.bs.affix.data-api", a.proxy(this.checkPositionWithEventLoop, this)), this.$element = a(b), this.affixed = null, this.unpin = null, this.pinnedOffset = null, this.checkPosition()
   };
   c.VERSION = "3.3.6", c.RESET = "affix affix-top affix-bottom", c.DEFAULTS = {
     offset: 0,
     target: window
-  }, c.prototype.getState = function(a, b, c, d) {
+  }, c.prototype.getState = function (a, b, c, d) {
     var e = this.$target.scrollTop(),
       f = this.$element.offset(),
       g = this.$target.height();
@@ -1460,15 +1460,15 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
       i = h ? e : f.top,
       j = h ? g : b;
     return null != c && c >= e ? "top" : null != d && i + j >= a - d ? "bottom" : !1
-  }, c.prototype.getPinnedOffset = function() {
+  }, c.prototype.getPinnedOffset = function () {
     if (this.pinnedOffset) return this.pinnedOffset;
     this.$element.removeClass(c.RESET).addClass("affix");
     var a = this.$target.scrollTop(),
       b = this.$element.offset();
     return this.pinnedOffset = b.top - a
-  }, c.prototype.checkPositionWithEventLoop = function() {
+  }, c.prototype.checkPositionWithEventLoop = function () {
     setTimeout(a.proxy(this.checkPosition, this), 1)
-  }, c.prototype.checkPosition = function() {
+  }, c.prototype.checkPosition = function () {
     if (this.$element.is(":visible")) {
       var b = this.$element.height(),
         d = this.options.offset,
@@ -1490,10 +1490,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }
   };
   var d = a.fn.affix;
-  a.fn.affix = b, a.fn.affix.Constructor = c, a.fn.affix.noConflict = function() {
+  a.fn.affix = b, a.fn.affix.Constructor = c, a.fn.affix.noConflict = function () {
     return a.fn.affix = d, this
-  }, a(window).on("load", function() {
-    a('[data-spy="affix"]').each(function() {
+  }, a(window).on("load", function () {
+    a('[data-spy="affix"]').each(function () {
       var c = a(this),
         d = c.data();
       d.offset = d.offset || {}, null != d.offsetBottom && (d.offset.bottom = d.offsetBottom), null != d.offsetTop && (d.offset.top = d.offsetTop), b.call(c, d)
@@ -1501,18 +1501,7 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
   })
 }(jQuery);
 
-
-
-
-
-
-
-
-
-
-$(function() {
-
-
+$(function () {
 
   /*
    * jQuery myCart - v1.5 - 2017-10-23
@@ -1520,11 +1509,11 @@ $(function() {
    * Copyright (c) 2017 Asraf Uddin Ahmed; Licensed None
    */
 
-  (function($) {
+  (function ($) {
 
     "use strict";
 
-    var OptionManager = (function() {
+    var OptionManager = (function () {
       var objToReturn = {};
 
       var _options = null;
@@ -1539,21 +1528,20 @@ $(function() {
         showCheckoutModal: true,
         numberOfDecimals: 0,
         cartItems: null,
-        clickOnAddToCart: function($addTocart) {},
-        afterAddOnCart: function(products, totalPrice, totalQuantity) {},
-        clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {},
-        checkoutCart: function(products, totalPrice, totalQuantity) {},
+        clickOnAddToCart: function ($addTocart) {},
+        afterAddOnCart: function (products, totalPrice, totalQuantity) {},
+        clickOnCartIcon: function ($cartIcon, products, totalPrice, totalQuantity) {},
+        checkoutCart: function (products, totalPrice, totalQuantity) {},
 
       };
 
-
-      var loadOptions = function(customOptions) {
+      var loadOptions = function (customOptions) {
         _options = $.extend({}, DEFAULT_OPTIONS);
         if (typeof customOptions === 'object') {
           $.extend(_options, customOptions);
         }
       }
-      var getOptions = function() {
+      var getOptions = function () {
         return _options;
       }
 
@@ -1562,9 +1550,9 @@ $(function() {
       return objToReturn;
     }());
 
-    var MathHelper = (function() {
+    var MathHelper = (function () {
       var objToReturn = {};
-      var getRoundedNumber = function(number) {
+      var getRoundedNumber = function (number) {
         if (isNaN(number)) {
           throw new Error('Parameter is not a Number');
         }
@@ -1577,17 +1565,17 @@ $(function() {
       return objToReturn;
     }());
 
-    var ProductManager = (function() {
+    var ProductManager = (function () {
       var objToReturn = {};
 
       /*
       PRIVATE
       */
       localStorage.products = localStorage.products ? localStorage.products : "";
-      var getIndexOfProduct = function(id) {
+      var getIndexOfProduct = function (id) {
         var productIndex = -1;
         var products = getAllProducts();
-        $.each(products, function(index, value) {
+        $.each(products, function (index, value) {
           if (value.id == id) {
             productIndex = index;
             return;
@@ -1595,10 +1583,10 @@ $(function() {
         });
         return productIndex;
       }
-      var setAllProducts = function(products) {
+      var setAllProducts = function (products) {
         localStorage.products = JSON.stringify(products);
       }
-      var addProduct = function(id, name, summary, price, quantity, image, carrency) {
+      var addProduct = function (id, name, summary, price, quantity, image, carrency) {
         var products = getAllProducts();
         products.push({
           id: id,
@@ -1615,7 +1603,7 @@ $(function() {
       /*
       PUBLIC
       */
-      var getAllProducts = function() {
+      var getAllProducts = function () {
         try {
           var products = JSON.parse(localStorage.products);
           return products;
@@ -1623,7 +1611,7 @@ $(function() {
           return [];
         }
       }
-      var updatePoduct = function(id, quantity) {
+      var updatePoduct = function (id, quantity) {
         var productIndex = getIndexOfProduct(id);
         if (productIndex < 0) {
           return false;
@@ -1633,7 +1621,7 @@ $(function() {
         setAllProducts(products);
         return true;
       }
-      var setProduct = function(id, name, summary, price, quantity, image, carrency) {
+      var setProduct = function (id, name, summary, price, quantity, image, carrency) {
         if (typeof id === "undefined") {
           console.error("id required")
           return false;
@@ -1660,20 +1648,20 @@ $(function() {
           addProduct(id, name, summary, price, quantity, image, carrency);
         }
       }
-      var clearProduct = function() {
+      var clearProduct = function () {
         setAllProducts([]);
       }
-      var removeProduct = function(id) {
+      var removeProduct = function (id) {
         var products = getAllProducts();
-        products = $.grep(products, function(value, index) {
+        products = $.grep(products, function (value, index) {
           return value.id != id;
         });
         setAllProducts(products);
       }
-      var getTotalQuantity = function() {
+      var getTotalQuantity = function () {
         var total = 0;
         var products = getAllProducts();
-        $.each(products, function(index, value) {
+        $.each(products, function (index, value) {
           total += value.quantity * 1;
         });
         $('.my-cart-badge').removeClass('show');
@@ -1684,20 +1672,20 @@ $(function() {
 
         return total;
       }
-      var getTotalPrice = function() {
+      var getTotalPrice = function () {
         var products = getAllProducts();
         var total = 0;
-        $.each(products, function(index, value) {
+        $.each(products, function (index, value) {
           total += value.quantity * value.price;
           total = MathHelper.getRoundedNumber(total) * 1;
         });
         return total;
       }
 
-      var getTotalCurrency = function() {
+      var getTotalCurrency = function () {
         var products = getAllProducts();
         var carren = '';
-        $.each(products, function(index, value) {
+        $.each(products, function (index, value) {
           carren = value.carrency;
         });
 
@@ -1717,7 +1705,7 @@ $(function() {
     }());
 
 
-    var loadMyCartEvent = function(targetSelector) {
+    var loadMyCartEvent = function (targetSelector) {
 
       var options = OptionManager.getOptions();
       var $cartIcon = $("." + options.classCartIcon);
@@ -1725,6 +1713,8 @@ $(function() {
       var classProductQuantity = options.classProductQuantity;
       var classProductRemove = options.classProductRemove;
       var classCheckoutCart = options.classCheckoutCart;
+
+      console.log(options)
 
       var idCartModal = 'my-cart-modal';
       var idCartTable = 'my-cart-table';
@@ -1737,7 +1727,7 @@ $(function() {
 
       if (options.cartItems && options.cartItems.constructor === Array) {
         ProductManager.clearProduct();
-        $.each(options.cartItems, function() {
+        $.each(options.cartItems, function () {
           ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image, this.currency);
         });
       }
@@ -1750,18 +1740,18 @@ $(function() {
         );
       }
 
-      var drawTable = function() {
+      var drawTable = function () {
         var $cartTable = $("#" + idCartTable);
         $cartTable.empty();
 
 
         var products = ProductManager.getAllProducts();
-        $.each(products, function() {
+        $.each(products, function () {
           var total = this.quantity * this.price;
           $cartTable.append(
             '<div class="row"  title="' + this.summary + '" data-id="' + this.id + '" data-price="' + this.price + '">' +
             '<div class="col-sm-4 col-xs-3 prod_title">' + this.name + '</div>' +
-            '<div class="col-sm-2 col-xs-3 prod_quante"><input type="number" min="1" style="width: 70px;" class="' + classProductQuantity + '" value="' + this.quantity + '"/><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div></div>' +
+            '<div class="col-sm-2 col-xs-3 prod_quante"><input type="number" min="' + this.quantity + '" style="width: 70px;" class="' + classProductQuantity + '" value="' + this.quantity + '"/><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div></div>' +
             '<div class="col-xs-3 prod_price">' + MathHelper.getRoundedNumber(this.price).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + '<span class="currency">' + this.carrency + '</span>' + '</div>' +
             '<div class="col-xs-3 prod_total ' + classProductTotal + '"><span class="total-price">' + MathHelper.getRoundedNumber(total).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + '</span><span class="currency">' + this.carrency + '</span>' + '</div>' +
             '<a href="javascript:void(0);" class="close ' + classProductRemove + '">×</a></div>'
@@ -1771,12 +1761,10 @@ $(function() {
         });
 
         $cartTable.append(products.length ?
-
           '<div class="row prod_grandtotal">' +
           '<div class="col-xs-12"><strong id="' + idGrandTotal + '"></strong></div>' +
           '</div>' : '<div class="alert alert-danger" role="alert" id="' + idEmptyCartMessage + '">Your cart is empty</div>'
         );
-
 
         if (!products.length) {
           $('#cart_table_head').hide('fast');
@@ -1785,23 +1773,22 @@ $(function() {
         } else {
           $('#cart_table_head').show('fast');
           $('#cart_modal_footer').show('fast');
-
         }
 
         showGrandTotal();
 
       }
-      var showModal = function() {
+      var showModal = function () {
         drawTable();
         $("#" + idCartModal).modal('show');
       }
-      var updateCart = function() {
-        $.each($("." + classProductQuantity), function() {
+      var updateCart = function () {
+        $.each($("." + classProductQuantity), function () {
           var id = $(this).closest(".row").data("id");
           ProductManager.updatePoduct(id, $(this).val());
         });
       }
-      var showGrandTotal = function() {
+      var showGrandTotal = function () {
         $("#" + idGrandTotal).text(MathHelper.getRoundedNumber(ProductManager.getTotalPrice()).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 '));
         $("#" + idGrandTotal).append('<span class="currency">' + ProductManager.getTotalCurrency() + '</span>');
 
@@ -1809,13 +1796,11 @@ $(function() {
         var cartData = "Total Price: " + MathHelper.getRoundedNumber(ProductManager.getTotalPrice()) + ProductManager.getTotalCurrency();
         var products = ProductManager.getAllProducts();
         cartData += "\n\n id \t name \t price \t quantity";
-        $.each(products, function() {
+        $.each(products, function () {
           cartData += ("\n " + this.id + " \t " + this.name + " \t " + this.price + this.carrency + " \t " + this.quantity);
         });
         $('#cart_data').val(cartData);
-        //alert(cartData);
       }
-
 
       /*
       EVENT
@@ -1823,16 +1808,16 @@ $(function() {
       if (options.affixCartIcon) {
         var cartIconBottom = $cartIcon.offset().top * 1 + $cartIcon.css("height").match(/\d+/) * 1;
         var cartIconPosition = $cartIcon.css('position');
-        $(window).scroll(function() {
+        $(window).scroll(function () {
           $(window).scrollTop() >= cartIconBottom ? $cartIcon.addClass(classAffixMyCartIcon) : $cartIcon.removeClass(classAffixMyCartIcon);
         });
       }
 
-      $cartIcon.click(function() {
+      $cartIcon.click(function () {
         options.showCheckoutModal ? showModal() : options.clickOnCartIcon($cartIcon, ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity(), ProductManager.getTotalCurrency());
       });
 
-      $(document).on('click', '.prod_quante .quantity-up', function() {
+      $(document).on('click', '.prod_quante .quantity-up', function () {
 
         var input = $(this).parent('.quantity-nav').siblings('input'),
           min = input.attr('min'),
@@ -1861,7 +1846,7 @@ $(function() {
 
       });
 
-      $(document).on('click', '.prod_quante .quantity-down', function() {
+      $(document).on('click', '.prod_quante .quantity-down', function () {
 
         var input = $(this).parent('.quantity-nav').siblings('input'),
           min = input.attr('min'),
@@ -1891,7 +1876,7 @@ $(function() {
 
       });
 
-      $(document).on("input", "." + classProductQuantity, function() {
+      $(document).on("input", "." + classProductQuantity, function () {
         var price = $(this).closest(".row").data("price");
         var id = $(this).closest(".row").data("id");
         var quantity = $(this).val();
@@ -1904,17 +1889,17 @@ $(function() {
         showGrandTotal();
       });
 
-      $(document).on('keypress', "." + classProductQuantity, function(evt) {
+      $(document).on('keypress', "." + classProductQuantity, function (evt) {
         if (evt.keyCode == 38 || evt.keyCode == 40) {
           return;
         }
         evt.preventDefault();
       });
 
-      $(document).on('click', "." + classProductRemove, function() {
+      $(document).on('click', "." + classProductRemove, function () {
         var $tr = $(this).closest(".row");
         var id = $tr.data("id");
-        $tr.hide(500, function() {
+        $tr.hide(500, function () {
           ProductManager.removeProduct(id);
           drawTable();
           $cartBadge.text(ProductManager.getTotalQuantity());
@@ -1923,7 +1908,7 @@ $(function() {
 
       var wpcf7Elm = document.querySelector('#my-cart-modal .wpcf7');
 
-      wpcf7Elm.addEventListener('wpcf7mailsent', function(event) {
+      wpcf7Elm.addEventListener('wpcf7mailsent', function (event) {
         var products = ProductManager.getAllProducts();
         if (!products.length) {
           $("#" + idEmptyCartMessage).fadeTo('fast', 0.5).fadeTo('fast', 1.0);
@@ -1934,28 +1919,13 @@ $(function() {
         ProductManager.clearProduct();
         $cartBadge.text(ProductManager.getTotalQuantity());
 
-        setTimeout(function() {
+        setTimeout(function () {
           $("#" + idCartModal).modal("hide");
           $('#cart_modal_footer').hide('fast');
         }, 3000);
       }, false);
 
-
-      /*    $(document).on('click', "." + classCheckoutCart, function() {
-            var products = ProductManager.getAllProducts();
-            if (!products.length) {
-              $("#" + idEmptyCartMessage).fadeTo('fast', 0.5).fadeTo('fast', 1.0);
-              return;
-            }
-            updateCart();
-            options.checkoutCart(ProductManager.getAllProducts(), ProductManager.getTotalPrice(), ProductManager.getTotalQuantity());
-            ProductManager.clearProduct();
-            $cartBadge.text(ProductManager.getTotalQuantity());
-            $("#" + idCartModal).modal("hide");
-
-          });*/
-
-      $(document).on('click', targetSelector, function() {
+      $(document).on('click', targetSelector, function () {
         var $target = $(this);
         options.clickOnAddToCart($target);
 
@@ -1979,28 +1949,24 @@ $(function() {
       });
 
     }
-
-
-    $.fn.myCart = function(userOptions) {
+    $.fn.myCart = function (userOptions) {
       OptionManager.loadOptions(userOptions);
       loadMyCartEvent(this.selector);
       return this;
     }
 
-
   })(jQuery);
 
 
 
-  jQuery(document).ready(function($) {
+  jQuery(document).ready(function ($) {
 
     /*
      * scripts
      */
 
 
-    var goToCartIcon = function($addTocartBtn) {
-
+    var goToCartIcon = function ($addTocartBtn) {
 
       var $cartIcon = $(".my-cart-icon"),
 
@@ -2022,7 +1988,7 @@ $(function() {
       $image.animate({
         top: position.top - $(window).scrollTop(),
         left: position.left - 30
-      }, 500, "linear", function() {
+      }, 500, "linear", function () {
         $image.remove();
       });
     }
@@ -2042,17 +2008,17 @@ $(function() {
         // {id: 2, name: 'product 2', summary: 'summary 2', price: 20, quantity: 2, image: 'images/img_2.png'},
         // {id: 3, name: 'product 3', summary: 'summary 3', price: 30, quantity: 1, image: 'images/img_3.png'}
       ],
-      clickOnAddToCart: function($addTocart) {
+      clickOnAddToCart: function ($addTocart) {
         goToCartIcon($addTocart);
 
       },
-      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+      afterAddOnCart: function (products, totalPrice, totalQuantity) {
         console.log("afterAddOnCart", products, totalPrice, totalQuantity);
       },
-      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+      clickOnCartIcon: function ($cartIcon, products, totalPrice, totalQuantity) {
         console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
       },
-      checkoutCart: function(products, totalPrice, totalQuantity) {
+      checkoutCart: function (products, totalPrice, totalQuantity) {
         /*        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
                 checkoutString += "\n\n id \t name \t summary \t price \t quantity";
                 $.each(products, function(){
@@ -2065,16 +2031,9 @@ $(function() {
 
     });
 
-    // $("#addNewProduct").click(function(event) {
-    //   var currentElementNo = $(".row").children().length + 1;
-    //   $(".row").append('<div class="col-md-3 text-center"><img src="images/img_empty.png" width="150px" height="150px"><br>product ' + currentElementNo + ' - <strong>$' + currentElementNo + '</strong><br><button class="btn btn-danger my-cart-btn" data-id="' + currentElementNo + '" data-name="product ' + currentElementNo + '" data-summary="summary ' + currentElementNo + '" data-price="' + currentElementNo + '" data-quantity="1" data-image="images/img_empty.png">Add to Cart</button><a href="#" class="btn btn-info">Details</a></div>')
-    // });
   });
 
-
-
-
-  (function() {
+  (function () {
     function getTimeRemaining(endtime) {
       var t = Date.parse(endtime) - Date.parse(new Date());
       var seconds = Math.floor((t / 1000) % 60);
@@ -2114,15 +2073,12 @@ $(function() {
       var timeinterval = setInterval(updateClock, 1000);
     }
 
-
-
-    $('#main-slider .slide-timer').each(function() {
+    $('#main-slider .slide-timer').each(function () {
       var clockId = $(this).attr('id'),
         dataTime = $(this).data('timer');
       var deadline = new Date(Date.parse(new Date()) + dataTime * 1000);
       initializeClock(clockId, deadline);
     });
-
 
   })();
 
@@ -2152,50 +2108,31 @@ $(function() {
   var slideH = $('#main-slider').height();
   $('.slide').css('height', slideH);
 
-
-
-  $("a[href='#top']").click(function() {
+  $("a[href='#top']").click(function () {
     $("html, body").animate({
       scrollTop: 0
     }, "slow");
     return false;
   });
 
-  $('#faq-section .question').click(function(event) {
+  $('#faq-section .question').click(function (event) {
     $(this).siblings('.answer').toggleClass('open');
     $(this).toggleClass('open');
   });
 
-
-  //    if(!$('.prod_quante input').children(.quantity-nav)){
-  // jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.prod_quante input');
-
-  //      }
-
-  document.addEventListener('wpcf7submit', function(event) {
-    setTimeout(function() {
+  document.addEventListener('wpcf7submit', function (event) {
+    setTimeout(function () {
       $('.wpcf7-response-output').hide('slow');
     }, 5000);
-
-
   }, false);
 
-
-
-
-  jQuery(window).scroll(function(e) {
-
-
+  jQuery(window).scroll(function (e) {
     if ($(window).scrollTop() > 100) {
       $('.header-line').addClass('stick');
     } else {
       $('.header-line').removeClass('stick');
     }
-
   });
 
-
   new WOW().init();
-
-
 });

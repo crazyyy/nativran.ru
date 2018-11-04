@@ -49,7 +49,7 @@
     <?php $header_line_style = ''; } else { $header_line_style = 'padding-top: 41px;'; } ?>
     <style>
       header .header-line.stick {
-        padding-top: 0;
+        padding-top: 0 !important;
       }
     </style>
     <div class="header-line" style="<?php echo $header_line_style; ?>">
