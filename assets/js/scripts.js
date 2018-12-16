@@ -21,9 +21,6 @@ if (typeof jQuery === 'undefined') {
   console.log('jQuery has loaded');
 }
 
-
-
-
 /*!
  * WOW
  */
@@ -1586,7 +1583,7 @@ $(function () {
       var setAllProducts = function (products) {
         localStorage.products = JSON.stringify(products);
       }
-      var addProduct = function (id, name, summary, price, quantity, image, carrency) {
+      var addProduct = function (id, name, summary, price, quantity, image, carrency, min_quantity) {
         var products = getAllProducts();
         products.push({
           id: id,
@@ -1596,6 +1593,7 @@ $(function () {
           quantity: quantity,
           image: image,
           carrency: carrency,
+          min_quantity: min_quantity
         });
         setAllProducts(products);
       }
@@ -1621,7 +1619,7 @@ $(function () {
         setAllProducts(products);
         return true;
       }
-      var setProduct = function (id, name, summary, price, quantity, image, carrency) {
+      var setProduct = function (id, name, summary, price, quantity, image, carrency, min_quantity) {
         if (typeof id === "undefined") {
           console.error("id required")
           return false;
@@ -1642,10 +1640,14 @@ $(function () {
           console.error("quantity is not a number");
           return false;
         }
+        if (!$.isNumeric(min_quantity)) {
+          console.error("min_quantity is not a number");
+          return false;
+        }
         summary = typeof summary === "undefined" ? "" : summary;
 
         if (!updatePoduct(id)) {
-          addProduct(id, name, summary, price, quantity, image, carrency);
+          addProduct(id, name, summary, price, quantity, image, carrency, min_quantity);
         }
       }
       var clearProduct = function () {
@@ -1668,8 +1670,6 @@ $(function () {
         if (total > 0) {
           $('.my-cart-badge').addClass('show');
         }
-
-
         return total;
       }
       var getTotalPrice = function () {
@@ -1690,7 +1690,6 @@ $(function () {
         });
 
         return carren;
-
       }
 
       objToReturn.getAllProducts = getAllProducts;
@@ -1714,8 +1713,6 @@ $(function () {
       var classProductRemove = options.classProductRemove;
       var classCheckoutCart = options.classCheckoutCart;
 
-      console.log(options)
-
       var idCartModal = 'my-cart-modal';
       var idCartTable = 'my-cart-table';
       var idGrandTotal = 'my-cart-grand-total';
@@ -1728,7 +1725,7 @@ $(function () {
       if (options.cartItems && options.cartItems.constructor === Array) {
         ProductManager.clearProduct();
         $.each(options.cartItems, function () {
-          ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image, this.currency);
+          ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image, this.currency, this.min_quantity);
         });
       }
 
@@ -1751,7 +1748,7 @@ $(function () {
           $cartTable.append(
             '<div class="row"  title="' + this.summary + '" data-id="' + this.id + '" data-price="' + this.price + '">' +
             '<div class="col-sm-4 col-xs-3 prod_title">' + this.name + '</div>' +
-            '<div class="col-sm-2 col-xs-3 prod_quante"><input type="number" min="' + this.quantity + '" style="width: 70px;" class="' + classProductQuantity + '" value="' + this.quantity + '"/><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div></div>' +
+            '<div class="col-sm-2 col-xs-3 prod_quante"><input type="number" min="' + this.min_quantity + '" style="width: 70px;" class="' + classProductQuantity + '" value="' + this.quantity + '"/><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div></div>' +
             '<div class="col-xs-3 prod_price">' + MathHelper.getRoundedNumber(this.price).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + '<span class="currency">' + this.carrency + '</span>' + '</div>' +
             '<div class="col-xs-3 prod_total ' + classProductTotal + '"><span class="total-price">' + MathHelper.getRoundedNumber(total).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ') + '</span><span class="currency">' + this.carrency + '</span>' + '</div>' +
             '<a href="javascript:void(0);" class="close ' + classProductRemove + '">×</a></div>'
@@ -1936,8 +1933,9 @@ $(function () {
         var quantity = $target.data('quantity');
         var image = $target.data('image');
         var currency = $target.data('currency');
+        var min_quantity = $target.data("quantity");
 
-        ProductManager.setProduct(id, name, summary, price, quantity, image, currency);
+        ProductManager.setProduct(id, name, summary, price, quantity, image, currency, min_quantity);
         $cartBadge.text(ProductManager.getTotalQuantity());
 
         options.afterAddOnCart(
@@ -1964,8 +1962,6 @@ $(function () {
     /*
      * scripts
      */
-
-
     var goToCartIcon = function ($addTocartBtn) {
 
       var $cartIcon = $(".my-cart-icon"),
@@ -1983,6 +1979,7 @@ $(function () {
         'border-radius': '50px'
       });
       $addTocartBtn.prepend($image);
+
       var position = $cartIcon.offset();
 
       $image.animate({
@@ -2010,13 +2007,12 @@ $(function () {
       ],
       clickOnAddToCart: function ($addTocart) {
         goToCartIcon($addTocart);
-
       },
       afterAddOnCart: function (products, totalPrice, totalQuantity) {
-        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+        // console.log("afterAddOnCart", products, totalPrice, totalQuantity);
       },
       clickOnCartIcon: function ($cartIcon, products, totalPrice, totalQuantity) {
-        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+        // console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
       },
       checkoutCart: function (products, totalPrice, totalQuantity) {
         /*        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;

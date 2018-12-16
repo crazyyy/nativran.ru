@@ -68,7 +68,20 @@
                     </div>
                   </div>
                   <div class="col-md-8 mod-btn">
-                    <button class="green-bg-btn my-cart-btn" data-id="<?php the_ID(); ?>" data-name="<?php the_title(); ?>" data-summary="summary 2" data-price="<?php the_field('price');?>" data-currency="<?php the_field('currency'); ?>"  data-quantity="2" data-image="<?php echo the_post_thumbnail_url('small'); ?>"><?php the_field('buy_btn', $lending__id);?></button>
+
+
+                  <?php $current_lang = pll_current_language(); $quantity = get_field('min_quantity'); if(!$quantity) { if ($current_lang == 'ru') { $quantity = 2; } else { $quantity = 4; } } ?>
+                  <button
+                    class="green-bg-btn my-cart-btn"
+                    data-id="<?php the_ID(); ?>"
+                    data-name="<?php the_title(); ?>"
+                    data-summary="summary 2"
+                    data-price="<?php the_field('price');?>"
+                    data-currency="<?php the_field('currency'); ?>"
+                    data-quantity="<?php echo $quantity; ?>"
+                    data-image="<?php echo the_post_thumbnail_url('small'); ?>">
+                      <?php the_field('buy_btn', $lending__id);?>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -124,45 +137,41 @@
 
 
 
-
-
-
-
-<script src="<?php echo get_template_directory_uri(); ?>/js/owl.carousel.min.js" type="text/javascript"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/owl.carousel.min.js" type="text/javascript"></script>
     <?php wp_footer(); ?>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script type="text/javascript">
 $( document ).ready(function() {
   $( ".head-cart a, .quantity-up, .quantity-down" ).live( "click", function() {
   var cena = $("#my-cart-grand-total").text();
-  var cart_email =  $("#cart-email").text(); 
+  var cart_email =  $("#cart-email").text();
 
 });
   document.addEventListener('wpcf7mailsent', function (event) {
             if ('36' == event.detail.contactFormId) {
               var cena = $("#my-cart-grand-total").text();
-              var cart_email =  $("#cart-email").val(); 
+              var cart_email =  $("#cart-email").val();
                 window.location = '/pay.php?cena='+cena+'&email='+cart_email+'&c=ru';
             }
             if ('226' == event.detail.contactFormId) {
               var cena = $("#my-cart-grand-total").text();
-              var cart_email =  $("#cart-email").val(); 
+              var cart_email =  $("#cart-email").val();
                 window.location = '/pay.php?cena='+cena+'&email='+cart_email+'&c=de';
             }
             if ('218' == event.detail.contactFormId) {
               var cena = $("#my-cart-grand-total").text();
-              var cart_email =  $("#cart-email").val(); 
+              var cart_email =  $("#cart-email").val();
                 window.location = '/pay.php?cena='+cena+'&email='+cart_email+'&c=en';
             }
             if ('235' == event.detail.contactFormId) {
               var cena = $("#my-cart-grand-total").text();
-              var cart_email =  $("#cart-email").val(); 
+              var cart_email =  $("#cart-email").val();
                 window.location = '/pay.php?cena='+cena+'&email='+cart_email+'&c=fr';
             }
 
         }, false);
 
-  
+
 });
 
 </script>

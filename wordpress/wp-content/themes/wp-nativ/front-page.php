@@ -96,13 +96,7 @@
                       </div>
                     <?php } ?>
 
-                    <?php
-                      if ($current_lang == 'ru') {$quantity = get_field('min_quantity_ru', $slide_product); if(!$quantity) {$quantity = 2;}}
-                      else if ($current_lang == 'en') {$quantity = get_field('min_quantity_en', $slide_product); if(!$quantity) {$quantity = 4;}}
-                      else if ($current_lang == 'ge') {$quantity = get_field('min_quantity_ge', $slide_product); if(!$quantity) {$quantity = 4;}}
-                      else if ($current_lang == 'fr') {$quantity = get_field('min_quantity_fr', $slide_product); if(!$quantity) {$quantity = 4;}}
-                      else {$quantity = 2;}
-                    ?>
+                    <?php $current_lang = pll_current_language(); $quantity = get_field('min_quantity', $slide_product); if(!$quantity) { if ($current_lang == 'ru') { $quantity = 2; } else { $quantity = 4; }} ?>
                     <button class="slide-btn green-big-btn my-cart-btn"
                       data-id="<?php echo $slide_product; ?>"
                       data-name="<?php echo get_the_title( $slide_product ); ?>"
@@ -174,14 +168,7 @@
                   <span class="prod-curr"><?php the_field('currency'); ?></span>
                 </div>
 
-                  <?php
-                    $current_lang = pll_current_language();
-                    if ($current_lang === 'ru') {$quantity = get_field('min_quantity_ru'); if(!$quantity) {$quantity = 2;}}
-                    else if ($current_lang === 'en') {$quantity = get_field('min_quantity_en'); if(!$quantity) {$quantity = 4;}}
-                    else if ($current_lang === 'ge') {$quantity = get_field('min_quantity_ge'); if(!$quantity) {$quantity = 4;}}
-                    else if ($current_lang === 'fr') {$quantity = get_field('min_quantity_fr'); if(!$quantity) {$quantity = 4;}}
-                    else {$quantity = 2;}
-                  ?>
+                  <?php $current_lang = pll_current_language(); $quantity = get_field('min_quantity'); if(!$quantity) { if ($current_lang == 'ru') { $quantity = 2; } else { $quantity = 4; } } ?>
 
                   <button class="green-bg-btn my-cart-btn"
                     data-id="<?php the_ID(); ?>"

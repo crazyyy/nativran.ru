@@ -24,7 +24,19 @@
 <body <?php body_class(); ?>>
 <!-- wrapper -->
 <div class="wrapper">
-
+<?php if( have_rows('header_sales') ) { ?>
+  <style>
+    header {
+      height: 130px;
+    }
+  </style>
+<?php } else {  ?>
+  <style>
+    header {
+      height: 90px;
+    }
+  </style>
+<?php } ?>
   <header>
     <?php if( have_rows('header_sales') ) { ?>
       <div class="present-line">
@@ -46,13 +58,9 @@
           </div>
         </div><!-- /.container -->
       </div><!-- /.present-line -->
-    <?php $header_line_style = ''; } else { $header_line_style = 'padding-top: 41px;'; } ?>
-    <style>
-      header .header-line.stick {
-        padding-top: 0 !important;
-      }
-    </style>
-    <div class="header-line" style="<?php echo $header_line_style; ?>">
+    <?php }  ?>
+
+    <div class="header-line">
       <div class="container">
 
           <div class="logo">
